@@ -13,4 +13,4 @@
 - `meridian_peddler:peddler_axe_kick`
 - `meridian_peddler:peddler_whirlwind`
 
-卷轴图标、阅读背景和动作贴图由相应客户端/动画仓提供；缺少专用资源时由功法库回退，不影响服务端目录解析。
+三卷的卷轴图标（`textures/item/<卷>_scroll.png`，32×32 透明底）和阅读背景（`textures/gui/scroll/<卷>.png`，1536×1024）由本仓提供，用 CPA gpt-image-2.5-sunburst 生成，原稿与提示词在审阅方交接目录 `art-peddler/`。功法战斗图标暂未提供，由功法库回退。
