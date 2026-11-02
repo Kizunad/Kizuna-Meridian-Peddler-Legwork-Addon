@@ -44,30 +44,35 @@ volumes {
 definitions {
   id: "meridian_peddler:snap_kick"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 3 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      target_airborne_weight { value: 0.5 unit: RATIO }
+      target_behind_weight { value: 0 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: WANDERING_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -90,33 +95,33 @@ slots {
     interruptible_by_damage: false
   }
   cooldown_millis: 1000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_snap_kick"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_snap_kick"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 1050
-  leg_strike {
-    shape: SINGLE_TARGET
-    facing: STRIKE_FORWARD
-    distance { value: 2.5 unit: METER }
-    angle { value: 60 unit: DEGREE }
-    multiplier { value: 1.2 unit: RATIO }
-    maximum_targets: 1
-    cast_target_limit: 1
-    leg: FRONT_LEG
-    damage_type_id: "meridian_peddler:kick_lead_legs"
-    knockback_kind: PUSH
-    knockback { value: 0.2 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: true
-    dedup_group: "snap_kick"
+  effects {
+    at_millis: 1050
+    leg_strike {
+      shape: SINGLE_TARGET
+      facing: STRIKE_FORWARD
+      distance { value: 2.5 unit: METER }
+      angle { value: 60 unit: DEGREE }
+      multiplier { value: 1.2 unit: RATIO }
+      maximum_targets: 1
+      cast_target_limit: 1
+      leg: FRONT_LEG
+      damage_type_id: "meridian_peddler:kick_lead_legs"
+      knockback_kind: PUSH
+      knockback { value: 0.2 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: true
+      dedup_group: "snap_kick"
+    }
   }
-}
   presentation { icon_id: "meridian_peddler:snap_kick" display_name: "弹腿" description: "提膝后以小腿快速弹出，踢向前方目标的腿部。" }
   movement_speed_multiplier: 0.4
 }
@@ -124,30 +129,35 @@ effects {
 definitions {
   id: "meridian_peddler:push_kick"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3.5 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 3.5 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      target_airborne_weight { value: 0.5 unit: RATIO }
+      target_behind_weight { value: 0 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: WANDERING_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -170,33 +180,33 @@ slots {
     interruptible_by_damage: true
   }
   cooldown_millis: 3000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_push_kick"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_push_kick"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 1950
-  leg_strike {
-    shape: SINGLE_TARGET
-    facing: STRIKE_FORWARD
-    distance { value: 3.5 unit: METER }
-    angle { value: 60 unit: DEGREE }
-    multiplier { value: 1.5 unit: RATIO }
-    maximum_targets: 1
-    cast_target_limit: 1
-    leg: FRONT_LEG
-    damage_type_id: "meridian_peddler:kick_lead_torso"
-    knockback_kind: PUSH
-    knockback { value: 2 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: true
-    dedup_group: "push_kick"
+  effects {
+    at_millis: 1950
+    leg_strike {
+      shape: SINGLE_TARGET
+      facing: STRIKE_FORWARD
+      distance { value: 3.5 unit: METER }
+      angle { value: 60 unit: DEGREE }
+      multiplier { value: 1.5 unit: RATIO }
+      maximum_targets: 1
+      cast_target_limit: 1
+      leg: FRONT_LEG
+      damage_type_id: "meridian_peddler:kick_lead_torso"
+      knockback_kind: PUSH
+      knockback { value: 2 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: true
+      dedup_group: "push_kick"
+    }
   }
-}
   presentation { icon_id: "meridian_peddler:push_kick" display_name: "正蹬" description: "提膝送胯正蹬，将前方目标蹬开。" }
   movement_speed_multiplier: 0.4
 }
@@ -204,30 +214,34 @@ effects {
 definitions {
   id: "meridian_peddler:ground_sweep"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 3 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      surrounded_weight { value: 4 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: WANDERING_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -250,52 +264,52 @@ slots {
     interruptible_by_damage: true
   }
   cooldown_millis: 4000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_ground_sweep"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_ground_sweep"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 1850
-  leg_strike {
-    shape: SECTOR
-    facing: STRIKE_FORWARD
-    distance { value: 3 unit: METER }
-    angle { value: 180 unit: DEGREE }
-    multiplier { value: 1 unit: RATIO }
-    maximum_targets: 5
-    cast_target_limit: 5
-    leg: FRONT_LEG
-    damage_type_id: "meridian_peddler:kick_lead_legs"
-    knockback_kind: TRIP
-    knockback { value: 1 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: false
-    dedup_group: "ground_sweep"
+  effects {
+    at_millis: 1850
+    leg_strike {
+      shape: SECTOR
+      facing: STRIKE_FORWARD
+      distance { value: 3 unit: METER }
+      angle { value: 180 unit: DEGREE }
+      multiplier { value: 1 unit: RATIO }
+      maximum_targets: 5
+      cast_target_limit: 5
+      leg: FRONT_LEG
+      damage_type_id: "meridian_peddler:kick_lead_legs"
+      knockback_kind: TRIP
+      knockback { value: 1 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: false
+      dedup_group: "ground_sweep"
+    }
   }
-}
-effects {
-  at_millis: 2350
-  leg_strike {
-    shape: SECTOR
-    facing: STRIKE_BACKWARD
-    distance { value: 3 unit: METER }
-    angle { value: 180 unit: DEGREE }
-    multiplier { value: 1 unit: RATIO }
-    maximum_targets: 5
-    cast_target_limit: 5
-    leg: FRONT_LEG
-    damage_type_id: "meridian_peddler:kick_lead_legs"
-    knockback_kind: TRIP
-    knockback { value: 1 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: true
-    dedup_group: "ground_sweep"
+  effects {
+    at_millis: 2350
+    leg_strike {
+      shape: SECTOR
+      facing: STRIKE_BACKWARD
+      distance { value: 3 unit: METER }
+      angle { value: 180 unit: DEGREE }
+      multiplier { value: 1 unit: RATIO }
+      maximum_targets: 5
+      cast_target_limit: 5
+      leg: FRONT_LEG
+      damage_type_id: "meridian_peddler:kick_lead_legs"
+      knockback_kind: TRIP
+      knockback { value: 1 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: true
+      dedup_group: "ground_sweep"
+    }
   }
-}
   presentation { icon_id: "meridian_peddler:ground_sweep" display_name: "扫堂" description: "贴地旋扫身前和身后的半圈，使目标绊倒。" }
   movement_speed_multiplier: 0.4
 }
@@ -303,30 +317,36 @@ effects {
 definitions {
   id: "meridian_peddler:roundhouse"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 3 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      target_behind_weight { value: 0 unit: RATIO }
+      surrounded_weight { value: 0 unit: RATIO }
+      self_fleeing_weight { value: 0 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: WANDERING_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -349,41 +369,41 @@ slots {
     interruptible_by_damage: true
   }
   cooldown_millis: 4000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_roundhouse"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_roundhouse"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 2000
-  leg_strike {
-    shape: SINGLE_TARGET
-    facing: STRIKE_FORWARD
-    distance { value: 3 unit: METER }
-    angle { value: 60 unit: DEGREE }
-    multiplier { value: 2 unit: RATIO }
-    maximum_targets: 1
-    cast_target_limit: 1
-    leg: REAR_LEG
-    damage_type_id: "meridian_peddler:kick_rear_head"
-    knockback_kind: SIDEWAYS
-    knockback { value: 0.8 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: true
-    dedup_group: "roundhouse"
+  effects {
+    at_millis: 2000
+    leg_strike {
+      shape: SINGLE_TARGET
+      facing: STRIKE_FORWARD
+      distance { value: 3 unit: METER }
+      angle { value: 60 unit: DEGREE }
+      multiplier { value: 2 unit: RATIO }
+      maximum_targets: 1
+      cast_target_limit: 1
+      leg: REAR_LEG
+      damage_type_id: "meridian_peddler:kick_rear_head"
+      knockback_kind: SIDEWAYS
+      knockback { value: 0.8 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: true
+      dedup_group: "roundhouse"
+    }
   }
-}
-follow_up {
-  transitions {
-    previous { id: "meridian_peddler:snap_kick" version: 1 }
-    recovery_start_ratio { value: 0.5 unit: RATIO }
-    after_recovery_millis: 500
-    start_millis: 400
+  follow_up {
+    transitions {
+      previous { id: "meridian_peddler:snap_kick" version: 1 }
+      recovery_start_ratio { value: 0.5 unit: RATIO }
+      after_recovery_millis: 500
+      start_millis: 400
+    }
   }
-}
   presentation { icon_id: "meridian_peddler:roundhouse" display_name: "鞭腿" description: "碾脚翻胯，以后腿横扫目标头部。" }
   movement_speed_multiplier: 0.4
 }
@@ -391,30 +411,36 @@ follow_up {
 definitions {
   id: "meridian_peddler:triple_kick"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 3 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      target_behind_weight { value: 0 unit: RATIO }
+      surrounded_weight { value: 0 unit: RATIO }
+      self_fleeing_weight { value: 0 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: WANDERING_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -437,79 +463,79 @@ slots {
     interruptible_by_damage: false
   }
   cooldown_millis: 5000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_triple_kick"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_triple_kick"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 1550
-  leg_strike {
-    shape: SINGLE_TARGET
-    facing: STRIKE_FORWARD
-    distance { value: 3 unit: METER }
-    angle { value: 60 unit: DEGREE }
-    multiplier { value: 0.8 unit: RATIO }
-    maximum_targets: 1
-    cast_target_limit: 1
-    leg: FRONT_LEG
-    damage_type_id: "meridian_peddler:kick_lead_legs"
-    knockback_kind: PUSH
-    knockback { value: 0.2 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: false
-    dedup_group: "triple_kick_1"
+  effects {
+    at_millis: 1550
+    leg_strike {
+      shape: SINGLE_TARGET
+      facing: STRIKE_FORWARD
+      distance { value: 3 unit: METER }
+      angle { value: 60 unit: DEGREE }
+      multiplier { value: 0.8 unit: RATIO }
+      maximum_targets: 1
+      cast_target_limit: 1
+      leg: FRONT_LEG
+      damage_type_id: "meridian_peddler:kick_lead_legs"
+      knockback_kind: PUSH
+      knockback { value: 0.2 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: false
+      dedup_group: "triple_kick_1"
+    }
   }
-}
-effects {
-  at_millis: 2150
-  leg_strike {
-    shape: SINGLE_TARGET
-    facing: STRIKE_FORWARD
-    distance { value: 3 unit: METER }
-    angle { value: 60 unit: DEGREE }
-    multiplier { value: 1.0 unit: RATIO }
-    maximum_targets: 1
-    cast_target_limit: 1
-    leg: FRONT_LEG
-    damage_type_id: "meridian_peddler:kick_lead_torso"
-    knockback_kind: PUSH
-    knockback { value: 0.2 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: false
-    dedup_group: "triple_kick_2"
+  effects {
+    at_millis: 2150
+    leg_strike {
+      shape: SINGLE_TARGET
+      facing: STRIKE_FORWARD
+      distance { value: 3 unit: METER }
+      angle { value: 60 unit: DEGREE }
+      multiplier { value: 1.0 unit: RATIO }
+      maximum_targets: 1
+      cast_target_limit: 1
+      leg: FRONT_LEG
+      damage_type_id: "meridian_peddler:kick_lead_torso"
+      knockback_kind: PUSH
+      knockback { value: 0.2 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: false
+      dedup_group: "triple_kick_2"
+    }
   }
-}
-effects {
-  at_millis: 2850
-  leg_strike {
-    shape: SINGLE_TARGET
-    facing: STRIKE_FORWARD
-    distance { value: 3 unit: METER }
-    angle { value: 60 unit: DEGREE }
-    multiplier { value: 1.6 unit: RATIO }
-    maximum_targets: 1
-    cast_target_limit: 1
-    leg: FRONT_LEG
-    damage_type_id: "meridian_peddler:kick_lead_head"
-    knockback_kind: PUSH
-    knockback { value: 0.2 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: true
-    dedup_group: "triple_kick_3"
+  effects {
+    at_millis: 2850
+    leg_strike {
+      shape: SINGLE_TARGET
+      facing: STRIKE_FORWARD
+      distance { value: 3 unit: METER }
+      angle { value: 60 unit: DEGREE }
+      multiplier { value: 1.6 unit: RATIO }
+      maximum_targets: 1
+      cast_target_limit: 1
+      leg: FRONT_LEG
+      damage_type_id: "meridian_peddler:kick_lead_head"
+      knockback_kind: PUSH
+      knockback { value: 0.2 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: true
+      dedup_group: "triple_kick_3"
+    }
   }
-}
-follow_up {
-  transitions {
-    previous { id: "meridian_peddler:snap_kick" version: 1 }
-    recovery_start_ratio { value: 0.5 unit: RATIO }
-    after_recovery_millis: 500
-    start_millis: 400
+  follow_up {
+    transitions {
+      previous { id: "meridian_peddler:snap_kick" version: 1 }
+      recovery_start_ratio { value: 0.5 unit: RATIO }
+      after_recovery_millis: 500
+      start_millis: 400
+    }
   }
-}
   presentation { icon_id: "meridian_peddler:triple_kick" display_name: "连环" description: "单腿站立，连续踢向腿、躯干和头部。" }
   movement_speed_multiplier: 0.4
 }
@@ -517,30 +543,36 @@ follow_up {
 definitions {
   id: "meridian_peddler:mule_kick"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3.5 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 3.5 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      pursued_weight { value: 2 unit: RATIO }
+      target_behind_weight { value: 4 unit: RATIO }
+      self_fleeing_weight { value: 2 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: WANDERING_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -563,33 +595,33 @@ slots {
     interruptible_by_damage: false
   }
   cooldown_millis: 4000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_mule_kick"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_mule_kick"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 1450
-  leg_strike {
-    shape: SECTOR
-    facing: STRIKE_BACKWARD
-    distance { value: 3 unit: METER }
-    angle { value: 90 unit: DEGREE }
-    multiplier { value: 1.5 unit: RATIO }
-    maximum_targets: 2
-    cast_target_limit: 2
-    leg: BOTH_LEGS
-    damage_type_id: "meridian_peddler:kick_double_torso"
-    knockback_kind: PUSH
-    knockback { value: 2.5 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: true
-    dedup_group: "mule_kick"
+  effects {
+    at_millis: 1450
+    leg_strike {
+      shape: SECTOR
+      facing: STRIKE_BACKWARD
+      distance { value: 3 unit: METER }
+      angle { value: 90 unit: DEGREE }
+      multiplier { value: 1.5 unit: RATIO }
+      maximum_targets: 2
+      cast_target_limit: 2
+      leg: BOTH_LEGS
+      damage_type_id: "meridian_peddler:kick_double_torso"
+      knockback_kind: PUSH
+      knockback { value: 2.5 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: true
+      dedup_group: "mule_kick"
+    }
   }
-}
   presentation { icon_id: "meridian_peddler:mule_kick" display_name: "尥蹶" description: "双手撑地，两腿向身后蹬出" }
   movement_speed_multiplier: 0.4
 }
@@ -597,30 +629,34 @@ effects {
 definitions {
   id: "meridian_peddler:flying_kick"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 5 unit: METER }
+    maximum_distance { value: 8 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      self_fleeing_weight { value: 0 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: TRUE_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -643,61 +679,61 @@ slots {
     interruptible_by_damage: true
   }
   cooldown_millis: 6000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_flying_kick"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_flying_kick"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 500
-  impulse {
-    direction: FORWARD
-    speed { value: 4 unit: METERS_PER_SECOND }
+  effects {
+    at_millis: 500
+    impulse {
+      direction: FORWARD
+      speed { value: 4 unit: METERS_PER_SECOND }
+    }
   }
-}
-effects {
-  at_millis: 850
-  impulse {
-    direction: FORWARD
-    speed { value: 4 unit: METERS_PER_SECOND }
+  effects {
+    at_millis: 850
+    impulse {
+      direction: FORWARD
+      speed { value: 4 unit: METERS_PER_SECOND }
+    }
   }
-}
-effects {
-  at_millis: 1350
-  impulse {
-    direction: UP
-    speed { value: 8.4 unit: METERS_PER_SECOND }
+  effects {
+    at_millis: 1350
+    impulse {
+      direction: UP
+      speed { value: 8.4 unit: METERS_PER_SECOND }
+    }
   }
-}
-effects {
-  at_millis: 1350
-  impulse {
-    direction: FORWARD
-    speed { value: 5 unit: METERS_PER_SECOND }
+  effects {
+    at_millis: 1350
+    impulse {
+      direction: FORWARD
+      speed { value: 5 unit: METERS_PER_SECOND }
+    }
   }
-}
-effects {
-  at_millis: 1750
-  leg_strike {
-    shape: SINGLE_TARGET
-    facing: STRIKE_FORWARD
-    distance { value: 3 unit: METER }
-    angle { value: 60 unit: DEGREE }
-    multiplier { value: 2.2 unit: RATIO }
-    maximum_targets: 1
-    cast_target_limit: 1
-    leg: REAR_LEG
-    damage_type_id: "meridian_peddler:kick_rear_torso"
-    knockback_kind: PUSH
-    knockback { value: 2 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: true
-    dedup_group: "flying_kick"
+  effects {
+    at_millis: 1750
+    leg_strike {
+      shape: SINGLE_TARGET
+      facing: STRIKE_FORWARD
+      distance { value: 3 unit: METER }
+      angle { value: 60 unit: DEGREE }
+      multiplier { value: 2.2 unit: RATIO }
+      maximum_targets: 1
+      cast_target_limit: 1
+      leg: REAR_LEG
+      damage_type_id: "meridian_peddler:kick_rear_torso"
+      knockback_kind: PUSH
+      knockback { value: 2 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: true
+      dedup_group: "flying_kick"
+    }
   }
-}
   presentation { icon_id: "meridian_peddler:flying_kick" display_name: "飞踹" description: "助跑腾空，以后腿踹向前方目标。" }
   movement_speed_multiplier: 0.4
 }
@@ -705,30 +741,36 @@ effects {
 definitions {
   id: "meridian_peddler:axe_kick"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 3 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      target_shielding_weight { value: 4 unit: RATIO }
+      target_airborne_weight { value: 2 unit: RATIO }
+      self_fleeing_weight { value: 0 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: TRUE_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -751,41 +793,41 @@ slots {
     interruptible_by_damage: true
   }
   cooldown_millis: 5000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_axe_kick"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_axe_kick"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 2450
-  leg_strike {
-    shape: SINGLE_TARGET
-    facing: STRIKE_FORWARD
-    distance { value: 3 unit: METER }
-    angle { value: 60 unit: DEGREE }
-    multiplier { value: 2.4 unit: RATIO }
-    maximum_targets: 1
-    cast_target_limit: 1
-    leg: REAR_LEG
-    damage_type_id: "meridian_peddler:axe_kick"
-    knockback_kind: DOWN
-    knockback { value: 0.3 unit: RATIO }
-    knockback_when_blocked: false
-    last_strike: true
-    dedup_group: "axe_kick"
+  effects {
+    at_millis: 2450
+    leg_strike {
+      shape: SINGLE_TARGET
+      facing: STRIKE_FORWARD
+      distance { value: 3 unit: METER }
+      angle { value: 60 unit: DEGREE }
+      multiplier { value: 2.4 unit: RATIO }
+      maximum_targets: 1
+      cast_target_limit: 1
+      leg: REAR_LEG
+      damage_type_id: "meridian_peddler:axe_kick"
+      knockback_kind: DOWN
+      knockback { value: 0.3 unit: RATIO }
+      knockback_when_blocked: false
+      last_strike: true
+      dedup_group: "axe_kick"
+    }
   }
-}
-follow_up {
-  transitions {
-    previous { id: "meridian_peddler:ground_sweep" version: 1 }
-    recovery_start_ratio { value: 0.5 unit: RATIO }
-    after_recovery_millis: 500
-    start_millis: 400
+  follow_up {
+    transitions {
+      previous { id: "meridian_peddler:ground_sweep" version: 1 }
+      recovery_start_ratio { value: 0.5 unit: RATIO }
+      after_recovery_millis: 500
+      start_millis: 400
+    }
   }
-}
   presentation { icon_id: "meridian_peddler:axe_kick" display_name: "下劈" description: "直腿高举后用脚跟向下劈落，越过盾牌。" }
   movement_speed_multiplier: 0.4
 }
@@ -793,30 +835,34 @@ follow_up {
 definitions {
   id: "meridian_peddler:whirlwind"
   version: 1
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 3.5 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 1 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 3.5 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 1 unit: RATIO }
+    combat {
+      self_fleeing_weight { value: 0 unit: RATIO }
+      minimum_leg_force { value: 3000 unit: NEWTON }
+    }
+  }
   category: ATTACK
   minimum_realm: TRUE_QI
-slots {
-  id: "foot_meridians"
-  module: MERIDIAN
-  tags: "human:foot_meridian"
-  minimum_count: 1
-  maximum_count: 6
-  require_opened: true
-}
-slots {
-  id: "leg_muscles"
-  module: TISSUE
-  tags: "human:leg_muscle"
-  minimum_count: 6
-  maximum_count: 6
-}
+  slots {
+    id: "foot_meridians"
+    module: MERIDIAN
+    tags: "human:foot_meridian"
+    minimum_count: 1
+    maximum_count: 6
+    require_opened: true
+  }
+  slots {
+    id: "leg_muscles"
+    module: TISSUE
+    tags: "human:leg_muscle"
+    minimum_count: 6
+    maximum_count: 6
+  }
   cost {
     qi {
       slot_id: "foot_meridians"
@@ -839,83 +885,83 @@ slots {
     interruptible_by_damage: true
   }
   cooldown_millis: 15000
-effects {
-  at_millis: 0
-  presentation {
-    id: "meridian_peddler:peddler_whirlwind"
-    duration: UNTIL_RECOVERY_END
-    start_millis: 0
+  effects {
+    at_millis: 0
+    presentation {
+      id: "meridian_peddler:peddler_whirlwind"
+      duration: UNTIL_RECOVERY_END
+      start_millis: 0
+    }
   }
-}
-effects {
-  at_millis: 2800
-  tissue_modifier {
-    slot_id: "leg_muscles"
-    curve { offset_millis: 0 value: 0 }
-    curve { offset_millis: 150 value: 1 }
-    curve { offset_millis: 950 value: 1 }
-    curve { offset_millis: 1750 value: -1 }
-    curve { offset_millis: 9000 value: -1 }
-    curve { offset_millis: 11000 value: 0 }
-    strength_peak { value: 1.4 unit: RATIO }
-    burst_peak { value: 1.4 unit: RATIO }
-    endurance_peak { value: 1.4 unit: RATIO }
-    recovery_peak { value: 1.4 unit: RATIO }
+  effects {
+    at_millis: 2800
+    tissue_modifier {
+      slot_id: "leg_muscles"
+      curve { offset_millis: 0 value: 0 }
+      curve { offset_millis: 150 value: 1 }
+      curve { offset_millis: 950 value: 1 }
+      curve { offset_millis: 1750 value: -1 }
+      curve { offset_millis: 9000 value: -1 }
+      curve { offset_millis: 11000 value: 0 }
+      strength_peak { value: 1.4 unit: RATIO }
+      burst_peak { value: 1.4 unit: RATIO }
+      endurance_peak { value: 1.4 unit: RATIO }
+      recovery_peak { value: 1.4 unit: RATIO }
+    }
   }
-}
-effects {
-  at_millis: 3050
-  leg_strike {
-    shape: SECTOR
-    facing: STRIKE_FORWARD
-    distance { value: 3.5 unit: METER }
-    angle { value: 180 unit: DEGREE }
-    multiplier { value: 2.2 unit: RATIO }
-    maximum_targets: 6
-    cast_target_limit: 6
-    leg: REAR_LEG
-    damage_type_id: "meridian_peddler:kick_rear_head"
-    knockback_kind: PUSH
-    knockback { value: 1.5 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: false
-    dedup_group: "whirlwind"
+  effects {
+    at_millis: 3050
+    leg_strike {
+      shape: SECTOR
+      facing: STRIKE_FORWARD
+      distance { value: 3.5 unit: METER }
+      angle { value: 180 unit: DEGREE }
+      multiplier { value: 2.2 unit: RATIO }
+      maximum_targets: 6
+      cast_target_limit: 6
+      leg: REAR_LEG
+      damage_type_id: "meridian_peddler:kick_rear_head"
+      knockback_kind: PUSH
+      knockback { value: 1.5 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: false
+      dedup_group: "whirlwind"
+    }
   }
-}
-effects {
-  at_millis: 3250
-  leg_strike {
-    shape: SECTOR
-    facing: STRIKE_BACKWARD
-    distance { value: 3.5 unit: METER }
-    angle { value: 180 unit: DEGREE }
-    multiplier { value: 2.2 unit: RATIO }
-    maximum_targets: 6
-    cast_target_limit: 6
-    leg: REAR_LEG
-    damage_type_id: "meridian_peddler:kick_rear_head"
-    knockback_kind: PUSH
-    knockback { value: 1.5 unit: RATIO }
-    knockback_when_blocked: true
-    last_strike: true
-    dedup_group: "whirlwind"
+  effects {
+    at_millis: 3250
+    leg_strike {
+      shape: SECTOR
+      facing: STRIKE_BACKWARD
+      distance { value: 3.5 unit: METER }
+      angle { value: 180 unit: DEGREE }
+      multiplier { value: 2.2 unit: RATIO }
+      maximum_targets: 6
+      cast_target_limit: 6
+      leg: REAR_LEG
+      damage_type_id: "meridian_peddler:kick_rear_head"
+      knockback_kind: PUSH
+      knockback { value: 1.5 unit: RATIO }
+      knockback_when_blocked: true
+      last_strike: true
+      dedup_group: "whirlwind"
+    }
   }
-}
-follow_up {
-  only_follow_up: true
-  transitions {
-    previous { id: "meridian_peddler:roundhouse" version: 1 }
-    recovery_start_ratio { value: 0.5 unit: RATIO }
-    after_recovery_millis: 500
-    start_millis: 1200
+  follow_up {
+    only_follow_up: true
+    transitions {
+      previous { id: "meridian_peddler:roundhouse" version: 1 }
+      recovery_start_ratio { value: 0.5 unit: RATIO }
+      after_recovery_millis: 500
+      start_millis: 1200
+    }
+    transitions {
+      previous { id: "meridian_peddler:flying_kick" version: 1 }
+      recovery_start_ratio { value: 0.5 unit: RATIO }
+      after_recovery_millis: 500
+      start_millis: 1200
+    }
   }
-  transitions {
-    previous { id: "meridian_peddler:flying_kick" version: 1 }
-    recovery_start_ratio { value: 0.5 unit: RATIO }
-    after_recovery_millis: 500
-    start_millis: 1200
-  }
-}
   presentation { icon_id: "meridian_peddler:whirlwind" display_name: "不留行" description: "腾空一旋，前后半圈各击一次，随后扶膝喘息。" }
   movement_speed_multiplier: 0.4
 }
@@ -956,13 +1002,13 @@ definitions {
       start_millis: 0
     }
   }
-ai_hints {
-  minimum_distance { value: 0 unit: METER }
-  maximum_distance { value: 1024 unit: METER }
-  maximum_hp_ratio { value: 1 unit: RATIO }
-  minimum_qi_ratio { value: 0 unit: RATIO }
-  category_weight { value: 0 unit: RATIO }
-}
+  ai_hints {
+    minimum_distance { value: 0 unit: METER }
+    maximum_distance { value: 1024 unit: METER }
+    maximum_hp_ratio { value: 1 unit: RATIO }
+    minimum_qi_ratio { value: 0 unit: RATIO }
+    category_weight { value: 0 unit: RATIO }
+  }
   movement_speed_multiplier: 0
   presentation { icon_id: "meridian_peddler:horse_stance" display_name: "蹲马步" description: "站定扎马步，训练六块腿部肌肉。" }
 }
