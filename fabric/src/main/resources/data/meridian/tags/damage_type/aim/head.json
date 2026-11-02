@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "meridian_peddler:kick_lead_head",
+    "meridian_peddler:kick_rear_head",
+    "meridian_peddler:axe_kick"
+  ]
+}

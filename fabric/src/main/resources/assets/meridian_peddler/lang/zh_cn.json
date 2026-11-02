@@ -1,0 +1,19 @@
+{
+  "book.meridian_peddler.legwork": "千里腿",
+  "volume.meridian_peddler.road": "上卷·赶路",
+  "item.meridian_peddler.road_scroll": "千里腿·上卷·赶路",
+  "volume.meridian_peddler.ambush": "中卷·拦路",
+  "item.meridian_peddler.ambush_scroll": "千里腿·中卷·拦路",
+  "volume.meridian_peddler.journey": "下卷·千里",
+  "item.meridian_peddler.journey_scroll": "千里腿·下卷·千里",
+  "technique.meridian_peddler.snap_kick": "弹腿",
+  "technique.meridian_peddler.push_kick": "正蹬",
+  "technique.meridian_peddler.ground_sweep": "扫堂",
+  "technique.meridian_peddler.horse_stance": "蹲马步",
+  "technique.meridian_peddler.roundhouse": "鞭腿",
+  "technique.meridian_peddler.triple_kick": "连环",
+  "technique.meridian_peddler.mule_kick": "尥蹶",
+  "technique.meridian_peddler.flying_kick": "飞踹",
+  "technique.meridian_peddler.axe_kick": "下劈",
+  "technique.meridian_peddler.whirlwind": "不留行"
+}

@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "meridian_peddler:kick_lead_legs",
+    "meridian_peddler:kick_lead_torso",
+    "meridian_peddler:kick_lead_head"
+  ]
+}
