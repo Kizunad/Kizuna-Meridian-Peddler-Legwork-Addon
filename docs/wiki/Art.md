@@ -13,4 +13,4 @@
 - `meridian_peddler:peddler_axe_kick`
 - `meridian_peddler:peddler_whirlwind`
 
-三卷的卷轴图标（`textures/item/<卷>_scroll.png`，32×32 透明底）和阅读背景（`textures/gui/scroll/<卷>.png`，1536×1024）由本仓提供，用 CPA gpt-image-2.5-sunburst 生成，原稿与提示词在审阅方交接目录 `art-peddler/`。功法战斗图标暂未提供，由功法库回退。
+三卷的卷轴图标（`textures/item/<卷>_scroll.png`，32×32 透明底）和阅读背景（`textures/gui/scroll/<卷>.png`，1536×1024）由本仓提供，用 CPA gpt-image-2.5-sunburst 生成，原稿与提示词在审阅方交接目录 `art-peddler/`。十式战斗图标（`textures/gui/technique/<式>.png` 32×32 与 `<式>_64.png` 64×64）同样由本仓提供、同一流程生成，边框与破门斩、基础功法一致。
