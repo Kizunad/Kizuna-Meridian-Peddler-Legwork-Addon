@@ -122,7 +122,7 @@ definitions {
       dedup_group: "snap_kick"
     }
   }
-  presentation { icon_id: "meridian_peddler:snap_kick" display_name: "弹腿" description: "提膝后以小腿快速弹出，踢向前方目标的腿部。" }
+  presentation { icon_id: "meridian_peddler:snap_kick" display_name: "弹腿" description: "村童们聚在打谷场上，单脚立定，小腿飞快往前虚踢，比谁踢落的草叶多，笑闹着叫这“货郎踢”。直到某天夜里村口进了僵尸，巡夜人照猫画虎踢折了僵尸的小腿骨，大人们才知这不是闹着玩。" }
   movement_speed_multiplier: 0.4
 }
 
@@ -207,7 +207,7 @@ definitions {
       dedup_group: "push_kick"
     }
   }
-  presentation { icon_id: "meridian_peddler:push_kick" display_name: "正蹬" description: "提膝送胯正蹬，将前方目标蹬开。" }
+  presentation { icon_id: "meridian_peddler:push_kick" display_name: "正蹬" description: "“路不是给闲人堵的，脚心朝前，山也得让三寸。”行脚商人们过险道时常把这话挂在嘴边。早年它在沙漠峡谷被滚石和劫匪拦路，就是凭着这一脚，把挡在当口的东西连人带车蹬下了山沟。" }
   movement_speed_multiplier: 0.4
 }
 
@@ -310,7 +310,7 @@ definitions {
       dedup_group: "ground_sweep"
     }
   }
-  presentation { icon_id: "meridian_peddler:ground_sweep" display_name: "扫堂" description: "贴地旋扫身前和身后的半圈，使目标绊倒。" }
+  presentation { icon_id: "meridian_peddler:ground_sweep" display_name: "扫堂" description: "大漠里的黑风暴刮起来时，漫天黄沙打得眼皮都抬不开，口鼻尽是土腥味。辨不清人影，它索性把重心沉到沙窝里，贴着地皮旋扫开去，听见骨头喀嚓断裂和栽倒的声音，便知踢中了。" }
   movement_speed_multiplier: 0.4
 }
 
@@ -404,7 +404,7 @@ definitions {
       start_millis: 400
     }
   }
-  presentation { icon_id: "meridian_peddler:roundhouse" display_name: "鞭腿" description: "碾脚翻胯，以后腿横扫目标头部。" }
+  presentation { icon_id: "meridian_peddler:roundhouse" display_name: "鞭腿" description: "赶羊驼本该使三尺牛皮鞭，可它两手要护着背上的草药包，腾不出空。羊驼不走，或是旁边窜出恶狼，它拧腰甩胯，后腿像软鞭一样兜头抽过去。商队里的人看直了眼，管这叫没皮子的肉鞭子。" }
   movement_speed_multiplier: 0.4
 }
 
@@ -536,7 +536,7 @@ definitions {
       start_millis: 400
     }
   }
-  presentation { icon_id: "meridian_peddler:triple_kick" display_name: "连环" description: "单腿站立，连续踢向腿、躯干和头部。" }
+  presentation { icon_id: "meridian_peddler:triple_kick" display_name: "连环" description: "村里的铁匠不信邪，押了三块新鲜烤面包，赌它金鸡独立踢不中三块靶子。只见它单足稳如老树，连点三下，把人家的鞋面、腰带和头顶的草帽踢得干干净净。那天中午它嚼着面包，笑得直不起腰。" }
   movement_speed_multiplier: 0.4
 }
 
@@ -622,7 +622,7 @@ definitions {
       dedup_group: "mule_kick"
     }
   }
-  presentation { icon_id: "meridian_peddler:mule_kick" display_name: "尥蹶" description: "双手撑地，两腿向身后蹬出" }
+  presentation { icon_id: "meridian_peddler:mule_kick" display_name: "尥蹶" description: "半夜摸黑去松缰绳，它不防备被那头脾气躁的白羊驼双蹄蹬在肚皮上，整个人栽进烂泥里，半晌喘不上气。揉着生疼的肚子爬起来，它愣愣看着羊驼撅起的后臀，突然咧开嘴无声地笑了。" }
   movement_speed_multiplier: 0.4
 }
 
@@ -734,7 +734,7 @@ definitions {
       dedup_group: "flying_kick"
     }
   }
-  presentation { icon_id: "meridian_peddler:flying_kick" display_name: "飞踹" description: "助跑腾空，以后腿踹向前方目标。" }
+  presentation { icon_id: "meridian_peddler:flying_kick" display_name: "飞踹" description: "酒馆说书人拍着惊堂木，说它当年凌空腾跃三丈，一脚把披甲的卫道士蹬过了村落石墙。其实不过是它在沼泽栈道被逼急了，借着助跑跃过泥潭，脚跟顺势撞翻了一个站立不稳的盗贼罢了。" }
   movement_speed_multiplier: 0.4
 }
 
@@ -828,7 +828,7 @@ definitions {
       start_millis: 400
     }
   }
-  presentation { icon_id: "meridian_peddler:axe_kick" display_name: "下劈" description: "直腿高举后用脚跟向下劈落，越过盾牌。" }
+  presentation { icon_id: "meridian_peddler:axe_kick" display_name: "下劈" description: "深山破庙前，它曾伏在草丛里，见那持铁斧的敌人由上至下、直挺挺劈碎了厚木活板门。那股下沉的劈劲让它记了很久。后来对上举盾的土匪，它把整条腿高高挂起，当成重斧直贯而下。" }
   movement_speed_multiplier: 0.4
 }
 
@@ -962,7 +962,7 @@ definitions {
       start_millis: 1200
     }
   }
-  presentation { icon_id: "meridian_peddler:whirlwind" display_name: "不留行" description: "腾空一旋，前后半圈各击一次，随后扶膝喘息。" }
+  presentation { icon_id: "meridian_peddler:whirlwind" display_name: "不留行" description: "那伙残兵败将逃回前哨站时，鼻青脸肿，嘴里只反复念叨着“转起来不留活路，连风都过不去”。旁人问那是个什么招式，带头的头目捂着断肋哼哼道：“那叫不留行，沾着就得躺下。”" }
   movement_speed_multiplier: 0.4
 }
 
@@ -1010,5 +1010,5 @@ definitions {
     category_weight { value: 0 unit: RATIO }
   }
   movement_speed_multiplier: 0
-  presentation { icon_id: "meridian_peddler:horse_stance" display_name: "蹲马步" description: "站定扎马步，训练六块腿部肌肉。" }
+  presentation { icon_id: "meridian_peddler:horse_stance" display_name: "蹲马步" description: "头一年在雨林扎马步，两腿抖如筛糠，膝头压碎了无数青苔。第五年在荒原烈日下扎马步，下盘沉稳，任凭两头受惊的羊驼来回撞扯也不晃分毫。到第十年，它站过的泥地陷成浅坑，野草不敢再生。" }
 }
