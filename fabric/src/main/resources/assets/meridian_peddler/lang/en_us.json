@@ -1,5 +1,6 @@
 {
   "book.meridian_peddler.legwork": "The Thousand-Mile Leg",
+  "book.meridian_peddler.legwork.note": "Hands may hold anything. You must stand on the ground. Better boots kick harder; each form wears the boots once.",
   "volume.meridian_peddler.road": "Road Volume",
   "item.meridian_peddler.road_scroll": "The Thousand-Mile Leg · Road Volume",
   "volume.meridian_peddler.ambush": "Ambush Volume",
@@ -7,13 +8,23 @@
   "volume.meridian_peddler.journey": "Journey Volume",
   "item.meridian_peddler.journey_scroll": "The Thousand-Mile Leg · Journey Volume",
   "technique.meridian_peddler.snap_kick": "Snap Kick",
+  "technique.meridian_peddler.snap_kick.note": "one quick kick to the leg; Roundhouse or Triple Kick can follow",
   "technique.meridian_peddler.push_kick": "Push Kick",
+  "technique.meridian_peddler.push_kick.note": "one push to the body that shoves the target away",
   "technique.meridian_peddler.ground_sweep": "Ground Sweep",
+  "technique.meridian_peddler.ground_sweep.note": "a half circle in front, then behind, tripping up to five within 3 blocks; Axe Kick can follow",
   "technique.meridian_peddler.horse_stance": "Horse Stance",
+  "technique.meridian_peddler.horse_stance.note": "training form: hold a stance for 30 s without striking; leg endurance grows afterwards",
   "technique.meridian_peddler.roundhouse": "Roundhouse",
+  "technique.meridian_peddler.roundhouse.note": "one heavy kick to the head; Whirlwind can follow",
   "technique.meridian_peddler.triple_kick": "Triple Kick",
+  "technique.meridian_peddler.triple_kick.note": "three kicks at one target, from leg up to head",
   "technique.meridian_peddler.mule_kick": "Mule Kick",
+  "technique.meridian_peddler.mule_kick.note": "a kick backwards that shoves away up to two targets behind you",
   "technique.meridian_peddler.flying_kick": "Flying Kick",
+  "technique.meridian_peddler.flying_kick.note": "two steps forward, then a flying kick; Whirlwind can follow",
   "technique.meridian_peddler.axe_kick": "Axe Kick",
-  "technique.meridian_peddler.whirlwind": "Whirlwind"
+  "technique.meridian_peddler.axe_kick.note": "a downward kick that a shield cannot block",
+  "technique.meridian_peddler.whirlwind": "Whirlwind",
+  "technique.meridian_peddler.whirlwind.note": "only after Roundhouse or Flying Kick; a half circle in front, then behind, on up to six targets within 3.5 blocks"
 }

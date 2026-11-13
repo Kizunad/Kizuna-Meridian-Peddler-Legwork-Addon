@@ -1,5 +1,6 @@
 {
   "book.meridian_peddler.legwork": "千里腿",
+  "book.meridian_peddler.legwork.note": "手里拿什么都行；要站在地上；靴子越好踢得越重，每式磨一次靴子",
   "volume.meridian_peddler.road": "上卷·赶路",
   "item.meridian_peddler.road_scroll": "千里腿·上卷·赶路",
   "volume.meridian_peddler.ambush": "中卷·拦路",
@@ -7,13 +8,23 @@
   "volume.meridian_peddler.journey": "下卷·千里",
   "item.meridian_peddler.journey_scroll": "千里腿·下卷·千里",
   "technique.meridian_peddler.snap_kick": "弹腿",
+  "technique.meridian_peddler.snap_kick.note": "踢腿一下，出得快；后面可接鞭腿、连环",
   "technique.meridian_peddler.push_kick": "正蹬",
+  "technique.meridian_peddler.push_kick.note": "蹬躯干一下，把人蹬开",
   "technique.meridian_peddler.ground_sweep": "扫堂",
+  "technique.meridian_peddler.ground_sweep.note": "前后各扫半圈，绊倒 3 格内最多五个；后面可接下劈",
   "technique.meridian_peddler.horse_stance": "蹲马步",
+  "technique.meridian_peddler.horse_stance.note": "训练式：原地扎马 30 秒，不出招，练完两腿耐力成长",
   "technique.meridian_peddler.roundhouse": "鞭腿",
+  "technique.meridian_peddler.roundhouse.note": "抽头一下，打得重；后面可接不留行",
   "technique.meridian_peddler.triple_kick": "连环",
+  "technique.meridian_peddler.triple_kick.note": "连踢同一个人三下，从腿踢到头",
   "technique.meridian_peddler.mule_kick": "尥蹶",
+  "technique.meridian_peddler.mule_kick.note": "向身后蹬，把背后最多两个人蹬开",
   "technique.meridian_peddler.flying_kick": "飞踹",
+  "technique.meridian_peddler.flying_kick.note": "前冲两步腾空踹一下；后面可接不留行",
   "technique.meridian_peddler.axe_kick": "下劈",
-  "technique.meridian_peddler.whirlwind": "不留行"
+  "technique.meridian_peddler.axe_kick.note": "从上往下劈一腿，盾挡不住",
+  "technique.meridian_peddler.whirlwind": "不留行",
+  "technique.meridian_peddler.whirlwind.note": "只能接在鞭腿或飞踹后面；前后各扫半圈，3 格半内最多打六个"
 }
