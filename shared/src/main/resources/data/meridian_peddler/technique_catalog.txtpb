@@ -21,6 +21,8 @@ volumes {
   techniques { id: "meridian_peddler:push_kick" version: 1 }
   techniques { id: "meridian_peddler:ground_sweep" version: 1 }
   techniques { id: "meridian_peddler:horse_stance" version: 1 }
+  # 生存来源：玩家亲手杀死会这一卷的流浪商人（Threatening 学卷表的游炁、真炁两档）时掉一卷，概率占位。
+  scroll_drops { entity_type: "minecraft:wandering_trader" chance: 0.25 }
 }
 volumes {
   id: "meridian_peddler:ambush"
@@ -30,6 +32,8 @@ volumes {
   techniques { id: "meridian_peddler:triple_kick" version: 1 }
   techniques { id: "meridian_peddler:mule_kick" version: 1 }
   prerequisite_volume_ids: "meridian_peddler:road"
+  # 生存来源同上卷；学卷表里只有真炁流浪商人会中卷。
+  scroll_drops { entity_type: "minecraft:wandering_trader" chance: 0.25 }
 }
 volumes {
   id: "meridian_peddler:journey"
@@ -39,6 +43,8 @@ volumes {
   techniques { id: "meridian_peddler:axe_kick" version: 1 }
   techniques { id: "meridian_peddler:whirlwind" version: 1 }
   prerequisite_volume_ids: "meridian_peddler:ambush"
+  # 生存来源同上卷；学卷表里只有一成真炁流浪商人会下卷，所以下卷最难得。
+  scroll_drops { entity_type: "minecraft:wandering_trader" chance: 0.25 }
 }
 
 definitions {

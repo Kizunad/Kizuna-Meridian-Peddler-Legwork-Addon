@@ -9,7 +9,8 @@
   },
   "entrypoints": {
     "fabric-gametest": [
-      "dev.kizuna.meridian.peddler.test.PeddlerGameTest"
+      "dev.kizuna.meridian.peddler.test.PeddlerGameTest",
+      "dev.kizuna.meridian.peddler.test.PeddlerScrollDropGameTest"
     ],
     "meridian_technique_host": [
       "dev.kizuna.meridian.peddler.test.PeddlerGameTest"

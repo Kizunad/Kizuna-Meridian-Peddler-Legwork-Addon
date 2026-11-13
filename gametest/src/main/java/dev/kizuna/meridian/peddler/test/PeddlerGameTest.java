@@ -29,6 +29,7 @@ import net.minecraft.gametest.framework.GameTestHelper;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -161,6 +162,19 @@ public final class PeddlerGameTest implements TechniqueHostEntrypoint {
         var host = new MemoryTechniqueHost(entityId, newBody(entityId));
         HOSTS.put(entityId, host);
         return host;
+    }
+
+    static void teach(UUID entityId, List<String> volumes) {
+        // 掉落用例借同一内存宿主给一只原版生物一具身体，再按顺序学会这几卷；空表就是有身体、一卷不会。
+        registerHost(entityId);
+        for (String volume : volumes) {
+            TechniqueFabric.service().learn(entityId, volume);
+        }
+    }
+
+    static void forget(UUID entityId) {
+        // 场景结束时收回身体，别的场景读不到这只生物。
+        HOSTS.remove(entityId);
     }
 
     private static void rejectVolume(TechniqueService service, UUID entityId, String volumeId) {

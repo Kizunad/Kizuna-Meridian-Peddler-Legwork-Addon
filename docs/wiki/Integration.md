@@ -8,6 +8,8 @@
 
 ## 书卷与目录
 
+生存来源：三卷都声明了 `scroll_drops { entity_type: "minecraft:wandering_trader" chance: 0.25 }`，功法库据此往原版流浪商人掉落表各加一池。玩家亲手杀死、且死者会这一整卷时按 0.25 掉一卷，不是玩家打死的不掉。死者会哪几卷由 Threatening 学卷表决定：游炁、真炁流浪商人都会上卷，只有真炁会中卷，一成真炁会下卷。0.25 是占位概率。
+
 书 ID 为 `meridian_peddler:legwork`，卷 ID 为 `road`、`ambush`、`journey`。中卷要求上卷，下卷要求中卷；上卷一次学会三式和蹲马步。所有式的效果表现 ID 与动作规格一致：`meridian_peddler:peddler_<technique>`。
 
 书级 `LegRules` 固定：忽略手持物品、要求着地、基础伤害 2 DAMAGE_POINT、每点靴子护甲增加 0.5 DAMAGE_POINT、每式最后一击磨鞋 1 点耐久。每式腿击的做功功率是设计稿两腿合计值除以六，写入每块肌肉的 `WorkCost`；蹲马步每块肌肉为 200 N、150 W、30 s，并带 `training: true`，移动倍率为 0。

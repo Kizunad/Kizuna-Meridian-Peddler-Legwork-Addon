@@ -2,6 +2,7 @@ package dev.kizuna.meridian.peddler.verification;
 
 import dev.kizuna.meridian.protocol.pb.BodyMessages.QiPhase;
 import dev.kizuna.meridian.technique.protocol.pb.TechniqueMessages.LegSelection;
+import dev.kizuna.meridian.technique.protocol.pb.TechniqueMessages.ScrollDrop;
 import dev.kizuna.meridian.technique.protocol.pb.TechniqueMessages.TechniqueDefinition;
 import dev.kizuna.meridian.technique.protocol.pb.TechniqueMessages.TechniqueEffect;
 import dev.kizuna.meridian.technique.server.TechniqueRegistry;
@@ -22,6 +23,8 @@ import static org.junit.Assert.assertTrue;
 public final class PeddlerCatalogTest {
     private static final String NAMESPACE = "meridian_peddler";
     private static final String BOOK_ID = NAMESPACE + ":legwork";
+    private static final String DROPPED_BY = "minecraft:wandering_trader";
+    private static final double SCROLL_DROP_CHANCE = 0.25;
     private static final double EPSILON = 0.000001;
     private static final int LEG_COUNT = 6;
     private static final int TECHNIQUE_COUNT = 10;
@@ -188,6 +191,19 @@ public final class PeddlerCatalogTest {
         }
         try (var stream = jar.getInputStream(entry)) {
             return new String(stream.readAllBytes(), StandardCharsets.UTF_8);
+        }
+    }
+
+    @Test
+    public void everyVolumeDropsOnlyFromWanderingTradersKilledByPlayers() throws IOException {
+        // 生存来源：三卷都只向流浪商人声明一项，概率占位；死者会不会这一卷由 Threatening 学卷表决定。
+        TechniqueRegistry registry = PeddlerCatalog.registry(PeddlerCatalog.load());
+        ScrollDrop drop = ScrollDrop.newBuilder()
+                .setEntityType(DROPPED_BY)
+                .setChance(SCROLL_DROP_CHANCE)
+                .build();
+        for (var volume : registry.volumes()) {
+            assertEquals(volume.getId(), List.of(drop), volume.getScrollDropsList());
         }
     }
 }
