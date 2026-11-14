@@ -26,5 +26,11 @@
   "technique.meridian_peddler.axe_kick": "Axe Kick",
   "technique.meridian_peddler.axe_kick.note": "a downward kick that a shield cannot block",
   "technique.meridian_peddler.whirlwind": "Whirlwind",
-  "technique.meridian_peddler.whirlwind.note": "only after Roundhouse or Flying Kick; a half circle in front, then behind, on up to six targets within 3.5 blocks"
+  "technique.meridian_peddler.whirlwind.note": "only after Roundhouse or Flying Kick; a half circle in front, then behind, on up to six targets within 3.5 blocks",
+  "advancements.meridian_peddler.cultivators.legwork.title": "Peddler's Legwork",
+  "advancements.meridian_peddler.cultivators.legwork.description": "Every trick of the road and the ambush mastered: flying kicks come down like axes, and a fierce whirlwind sweep scatters everyone closing in.",
+  "codex.intro.meridian_peddler.legwork": "Footwork honed by peddlers on desolate tracks: kicking stone, sweeping sand, whipping from the hip—breaking every ambush with legs alone.",
+  "codex.power.meridian_peddler.road": "Settle your stance low and shove foes back with the sole of the foot. Dropping low across desert sand, a ground sweep trips everyone crowding in.",
+  "codex.power.meridian_peddler.ambush": "Whip the leg around with a twist of the hips, peppering vitals on a single foot, or kick backward with both heels like a startled llama.",
+  "codex.power.meridian_peddler.journey": "A flying kick breaks the path ahead, followed by an axe kick brought down on the skull, and a whirlwind sweep that scatters everyone closing in."
 }

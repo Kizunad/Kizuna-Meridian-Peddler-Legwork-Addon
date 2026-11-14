@@ -26,5 +26,11 @@
   "technique.meridian_peddler.axe_kick": "下劈",
   "technique.meridian_peddler.axe_kick.note": "从上往下劈一腿，盾挡不住",
   "technique.meridian_peddler.whirlwind": "不留行",
-  "technique.meridian_peddler.whirlwind.note": "只能接在鞭腿或飞踹后面；前后各扫半圈，3 格半内最多打六个"
+  "technique.meridian_peddler.whirlwind.note": "只能接在鞭腿或飞踹后面；前后各扫半圈，3 格半内最多打六个",
+  "advancements.meridian_peddler.cultivators.legwork.title": "行脚踢蹬",
+  "advancements.meridian_peddler.cultivators.legwork.description": "赶路拦路的腿功全学会了，凌空飞踹势沉如斧，急旋扫踢之下荡尽四方合围之人。",
+  "codex.intro.meridian_peddler.legwork": "行脚商在荒漠险道磨出的下盘功夫，蹬石扫沙、甩胯作鞭，全凭双腿破开各路阻拦。",
+  "codex.power.meridian_peddler.road": "沉步扎稳下盘，脚心直蹬退敌，大漠里伏低旋扫能将前后围攻之人尽数绊翻。",
+  "codex.power.meridian_peddler.ambush": "拧腰甩出没皮子的肉鞭腿，单足连踢各处要害，还能学受惊羊驼向后双蹄猛蹬。",
+  "codex.power.meridian_peddler.journey": "腾空飞踹破开前路，单腿如重斧当头下劈，周身急旋扫踢将周遭围攻者尽数荡开。"
 }
