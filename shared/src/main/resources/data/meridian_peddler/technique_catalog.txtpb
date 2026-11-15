@@ -97,7 +97,7 @@ definitions {
   phases {
     warmup_millis: 1050
     active_millis: 0
-    recovery_millis: 1950
+    recovery_millis: 1150
     interruptible_by_damage: false
   }
   cooldown_millis: 1000
@@ -182,7 +182,7 @@ definitions {
   phases {
     warmup_millis: 1950
     active_millis: 0
-    recovery_millis: 3050
+    recovery_millis: 1850
     interruptible_by_damage: true
   }
   cooldown_millis: 3000
@@ -266,7 +266,7 @@ definitions {
   phases {
     warmup_millis: 1850
     active_millis: 500
-    recovery_millis: 3650
+    recovery_millis: 2050
     interruptible_by_damage: true
   }
   cooldown_millis: 4000
@@ -371,7 +371,7 @@ definitions {
   phases {
     warmup_millis: 2000
     active_millis: 0
-    recovery_millis: 3000
+    recovery_millis: 1550
     interruptible_by_damage: true
   }
   cooldown_millis: 4000
@@ -405,7 +405,7 @@ definitions {
   follow_up {
     transitions {
       previous { id: "meridian_peddler:snap_kick" version: 1 }
-      recovery_start_ratio { value: 0.5 unit: RATIO }
+      recovery_start_ratio { value: 0.7826 unit: RATIO }
       after_recovery_millis: 500
       start_millis: 400
     }
@@ -465,7 +465,7 @@ definitions {
   phases {
     warmup_millis: 1550
     active_millis: 1300
-    recovery_millis: 3150
+    recovery_millis: 950
     interruptible_by_damage: false
   }
   cooldown_millis: 5000
@@ -537,7 +537,7 @@ definitions {
   follow_up {
     transitions {
       previous { id: "meridian_peddler:snap_kick" version: 1 }
-      recovery_start_ratio { value: 0.5 unit: RATIO }
+      recovery_start_ratio { value: 0.7826 unit: RATIO }
       after_recovery_millis: 500
       start_millis: 400
     }
@@ -597,7 +597,7 @@ definitions {
   phases {
     warmup_millis: 1450
     active_millis: 0
-    recovery_millis: 3550
+    recovery_millis: 1750
     interruptible_by_damage: false
   }
   cooldown_millis: 4000
@@ -681,7 +681,7 @@ definitions {
   phases {
     warmup_millis: 500
     active_millis: 1250
-    recovery_millis: 4250
+    recovery_millis: 900
     interruptible_by_damage: true
   }
   cooldown_millis: 6000
@@ -795,7 +795,7 @@ definitions {
   phases {
     warmup_millis: 2450
     active_millis: 0
-    recovery_millis: 3550
+    recovery_millis: 1400
     interruptible_by_damage: true
   }
   cooldown_millis: 5000
@@ -829,7 +829,7 @@ definitions {
   follow_up {
     transitions {
       previous { id: "meridian_peddler:ground_sweep" version: 1 }
-      recovery_start_ratio { value: 0.5 unit: RATIO }
+      recovery_start_ratio { value: 0.878 unit: RATIO }
       after_recovery_millis: 500
       start_millis: 400
     }
@@ -957,13 +957,13 @@ definitions {
     only_follow_up: true
     transitions {
       previous { id: "meridian_peddler:roundhouse" version: 1 }
-      recovery_start_ratio { value: 0.5 unit: RATIO }
+      recovery_start_ratio { value: 0.8387 unit: RATIO }
       after_recovery_millis: 500
       start_millis: 1200
     }
     transitions {
       previous { id: "meridian_peddler:flying_kick" version: 1 }
-      recovery_start_ratio { value: 0.5 unit: RATIO }
+      recovery_start_ratio { value: 0.7222 unit: RATIO }
       after_recovery_millis: 500
       start_millis: 1200
     }
