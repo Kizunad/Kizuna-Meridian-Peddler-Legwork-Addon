@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "id": "meridian_peddler_clienttest",
+  "version": "1.0.0",
+  "name": "拳脚不着地客户端连拍",
+  "environment": "client",
+  "entrypoints": {
+    "fabric-client-gametest": ["dev.kizuna.meridian.peddler.clienttest.AirborneStrikeClientTest"]
+  },
+  "depends": {
+    "fabric-api": "*", "meridian_peddler": "*", "meridian_villager": "*", "meridian_technique": "*",
+    "meridian_human_host": "*"
+  }
+}

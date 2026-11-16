@@ -83,7 +83,7 @@ public final class PeddlerGameTest implements TechniqueHostEntrypoint {
         var book = PeddlerCatalog.registry(PeddlerCatalog.load()).books().get(0);
         var rules = book.getLegRules();
         context.assertTrue(rules.getIgnoreHeldItems(), "腿法没有忽略手持物品");
-        context.assertTrue(rules.getRequireGrounded(), "腿法没有要求着地");
+        context.assertTrue(rules.hasRequireGrounded() && !rules.getRequireGrounded(), "腿法应写明不要求着地");
         context.assertTrue(rules.getBaseDamage().getValue() == BASE_DAMAGE, "光脚基础伤害不符");
         context.assertTrue(rules.getArmorDamage().getValue() == ARMOR_DAMAGE, "鞋护甲伤害不符");
         context.assertTrue(rules.getDurabilityCost() == 1, "鞋耐久消耗不符");

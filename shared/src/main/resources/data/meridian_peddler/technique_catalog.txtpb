@@ -7,7 +7,7 @@ books {
   display_name: "千里腿"
   leg_rules {
     ignore_held_items: true
-    require_grounded: true
+    require_grounded: false
     base_damage { value: 2 unit: DAMAGE_POINT }
     armor_damage { value: 0.5 unit: DAMAGE_POINT }
     durability_cost: 1

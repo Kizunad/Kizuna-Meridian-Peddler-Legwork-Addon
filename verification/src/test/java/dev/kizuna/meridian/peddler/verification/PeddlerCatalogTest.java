@@ -75,12 +75,13 @@ public final class PeddlerCatalogTest {
     }
 
     @Test
-    public void bookRulesIgnoreHeldItemsRequireGroundedAndChargeBoots() throws IOException {
-        // 书级腿法规则固定持物、着地和鞋耐久口径，宿主不能猜默认值。
+    public void bookRulesIgnoreHeldItemsAllowAirborneAndChargeBoots() throws IOException {
+        // 书级腿法规则固定持物、着地和鞋耐久口径，宿主不能猜默认值；用户 11-15 定腿法不要求着地，空中也能出腿。
         var book = PeddlerCatalog.registry(PeddlerCatalog.load()).books().get(0);
         var rules = book.getLegRules();
         assertTrue(rules.getIgnoreHeldItems());
-        assertTrue(rules.getRequireGrounded());
+        assertTrue(rules.hasRequireGrounded());
+        assertFalse(rules.getRequireGrounded());
         assertEquals(BASE_DAMAGE, rules.getBaseDamage().getValue(), 0);
         assertEquals(ARMOR_DAMAGE, rules.getArmorDamage().getValue(), 0);
         assertEquals(1, rules.getDurabilityCost());

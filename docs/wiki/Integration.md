@@ -12,7 +12,7 @@
 
 书 ID 为 `meridian_peddler:legwork`，卷 ID 为 `road`、`ambush`、`journey`。中卷要求上卷，下卷要求中卷；上卷一次学会三式和蹲马步。所有式的效果表现 ID 与动作规格一致：`meridian_peddler:peddler_<technique>`。
 
-书级 `LegRules` 固定：忽略手持物品、要求着地、基础伤害 2 DAMAGE_POINT、每点靴子护甲增加 0.5 DAMAGE_POINT、每式最后一击磨鞋 1 点耐久。每式腿击的做功功率是设计稿两腿合计值除以六，写入每块肌肉的 `WorkCost`；蹲马步每块肌肉为 200 N、150 W、30 s，并带 `training: true`，移动倍率为 0。
+书级 `LegRules` 固定：忽略手持物品、不要求着地（空中、水里、攀爬、骑乘、滑翔时都能出腿，用户 11-15 定；飞踹 1350 ms 的向上冲量到那一刻不站在地上就不给，只给水平那份，由功法库统一处理）、基础伤害 2 DAMAGE_POINT、每点靴子护甲增加 0.5 DAMAGE_POINT、每式最后一击磨鞋 1 点耐久。每式腿击的做功功率是设计稿两腿合计值除以六，写入每块肌肉的 `WorkCost`；蹲马步每块肌肉为 200 N、150 W、30 s，并带 `training: true`，移动倍率为 0。
 
 ## 伤害类型和标签
 
