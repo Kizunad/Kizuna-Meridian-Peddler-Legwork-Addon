@@ -100,8 +100,6 @@ public final class AirborneStrikeClientTest implements FabricClientGameTest {
         command(world, "gamerule advance_time false");
         command(world, "weather clear");
         context.runOnClient(client -> {
-            // 新玩家进世界会弹出身抽选界面，整屏挡住画面；合上它等于点「先不选」。
-            client.gui.setScreen(null);
             if (!client.gui.hud.isHidden()) {
                 client.gui.hud.toggle();
             }
