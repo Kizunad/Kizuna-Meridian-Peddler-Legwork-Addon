@@ -1,7 +1,7 @@
 # 千里腿功法目录。所有数值均为占位，做功按两腿六块肌肉的合计功率平均分配。
 schema_version: 1
 namespace: "meridian_peddler"
-binding_templates { id: "human:adult" version: 1 }
+binding_template_groups: "human:humanoid"
 books {
   id: "meridian_peddler:legwork"
   display_name: "千里腿"
