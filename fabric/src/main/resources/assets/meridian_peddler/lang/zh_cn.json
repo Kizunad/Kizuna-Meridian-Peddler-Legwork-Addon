@@ -1,4 +1,8 @@
 {
+  "gamerule.meridian_peddler.natural_visits": "允许行脚货郎到访",
+  "pack.meridian_peddler.no_natural_visits": "暂停行脚货郎到访",
+  "merchant.meridian_peddler.name": "行脚货郎孙快腿",
+  "merchant.meridian_peddler.greeting": "来看看吧。这一担有千里腿卷轴、火把、干粮。有皮子我也收。",
   "book.meridian_peddler.legwork": "千里腿",
   "book.meridian_peddler.legwork.note": "手里拿什么都行；跳起来也能出腿；靴子越好踢得越重，每式磨一次靴子",
   "volume.meridian_peddler.road": "上卷·赶路",

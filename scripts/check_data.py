@@ -47,10 +47,10 @@ def main() -> int:
     if isinstance(metadata, dict):
         if metadata.get("id") != NAMESPACE or metadata.get("environment") != "*":
             failures.append("fabric.mod.json: ID 或环境不属于正式千里腿数据包")
-        if metadata.get("entrypoints") or metadata.get("mixins"):
-            failures.append("fabric.mod.json: 正式数据包不得声明入口或 mixin")
+        if metadata.get("entrypoints") != {"main": ["dev.kizuna.meridian.peddler.PeddlerVisits"]}:
+            failures.append("fabric.mod.json: 正式包缺少行脚货郎入口")
         dependencies = metadata.get("depends", {})
-        for dependency in ("meridian_technique", "meridian_vanilla_damage", "meridian_human_host"):
+        for dependency in ("meridian_currency", "meridian_technique", "meridian_vanilla_damage", "meridian_human_host"):
             if dependency not in dependencies:
                 failures.append(f"fabric.mod.json: 缺少硬依赖 {dependency}")
         expected_catalog = f"data/{NAMESPACE}/technique_catalog.txtpb"

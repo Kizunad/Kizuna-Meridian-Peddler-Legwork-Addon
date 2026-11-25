@@ -1,4 +1,13 @@
-description = '两端安装的纯数据 Fabric 包，无入口或运行时代码。'
+plugins { id 'net.fabricmc.fabric-loom' }
+
+description = '千里腿目录与行脚货郎。'
+
+dependencies {
+    minecraft libs.minecraft
+    implementation libs.fabric.loader
+    implementation libs.fabric.api
+    compileOnly files(kizunaWorkspace.artifact('currency', '', false))
+}
 
 processResources {
     inputs.property 'version', project.version

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:game_rules",
+  "rules": {
+    "meridian_peddler:natural_visits": true,
+    "minecraft:spawn_mobs": true,
+    "minecraft:spawn_wandering_traders": true
+  }
+}

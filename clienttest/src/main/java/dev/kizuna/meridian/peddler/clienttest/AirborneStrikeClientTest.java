@@ -78,6 +78,10 @@ public final class AirborneStrikeClientTest implements FabricClientGameTest {
 
     @Override
     public void runTest(ClientGameTestContext context) {
+        // 连拍和货郎实拍共用客户端测试入口，各自启动自己的生存世界。
+        if (!"airborne".equals(System.getProperty("meridian.peddler.scene"))) {
+            return;
+        }
         context.getInput().resizeWindow(WINDOW_WIDTH, WINDOW_HEIGHT);
         try (TestSingleplayerContext world = context.worldBuilder().create()) {
             world.getConnection().waitForChunksRender();

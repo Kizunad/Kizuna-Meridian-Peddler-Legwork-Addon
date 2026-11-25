@@ -1,4 +1,8 @@
 {
+  "gamerule.meridian_peddler.natural_visits": "Allow traveling peddler visits",
+  "pack.meridian_peddler.no_natural_visits": "Pause traveling peddler visits",
+  "merchant.meridian_peddler.name": "Quick-Foot Sun, Traveling Peddler",
+  "merchant.meridian_peddler.greeting": "Take a look. Thousand-Mile Leg scrolls, torches, and rations. Buying hides, too.",
   "book.meridian_peddler.legwork": "The Thousand-Mile Leg",
   "book.meridian_peddler.legwork.note": "Hands may hold anything. You can kick in mid-air too. Better boots kick harder; each form wears the boots once.",
   "volume.meridian_peddler.road": "Road Volume",

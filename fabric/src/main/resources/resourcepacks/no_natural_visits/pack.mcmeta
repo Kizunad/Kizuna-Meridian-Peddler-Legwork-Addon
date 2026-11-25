@@ -1,0 +1,7 @@
+{
+  "pack": {
+    "description": {"translate": "pack.meridian_peddler.no_natural_visits"},
+    "min_format": [107, 1],
+    "max_format": [107, 1]
+  }
+}

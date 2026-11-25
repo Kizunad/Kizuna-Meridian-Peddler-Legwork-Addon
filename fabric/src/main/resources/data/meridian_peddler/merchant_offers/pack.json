@@ -1,0 +1,77 @@
+{
+  "offers": [
+    {
+      "id": "meridian_peddler:road_scroll",
+      "direction": "buy",
+      "goods": {
+        "id": "meridian_peddler:road_scroll"
+      },
+      "price": {
+        "currency_id": "meridian_currency:copper",
+        "units": 120
+      },
+      "count_format": "trade.meridian_currency.stock.scrolls"
+    },
+    {
+      "id": "meridian_peddler:ambush_scroll",
+      "direction": "buy",
+      "goods": {
+        "id": "meridian_peddler:ambush_scroll"
+      },
+      "price": {
+        "currency_id": "meridian_currency:copper",
+        "units": 240
+      },
+      "count_format": "trade.meridian_currency.stock.scrolls"
+    },
+    {
+      "id": "meridian_peddler:journey_scroll",
+      "direction": "buy",
+      "goods": {
+        "id": "meridian_peddler:journey_scroll"
+      },
+      "price": {
+        "currency_id": "meridian_currency:copper",
+        "units": 480
+      },
+      "count_format": "trade.meridian_currency.stock.scrolls"
+    },
+    {
+      "id": "meridian_peddler:torch",
+      "direction": "buy",
+      "goods": {
+        "id": "minecraft:torch"
+      },
+      "price": {
+        "currency_id": "meridian_currency:copper",
+        "units": 3
+      },
+      "count_format": "trade.meridian_currency.stock.torches"
+    },
+    {
+      "id": "meridian_peddler:bread",
+      "direction": "buy",
+      "goods": {
+        "id": "minecraft:bread"
+      },
+      "price": {
+        "currency_id": "meridian_currency:copper",
+        "units": 12
+      },
+      "count_format": "trade.meridian_currency.stock.items"
+    },
+    {
+      "id": "meridian_peddler:leather",
+      "direction": "sell",
+      "goods": {
+        "id": "minecraft:leather"
+      },
+      "price": {
+        "currency_id": "meridian_currency:copper",
+        "units": 35
+      },
+      "count_format": "trade.meridian_currency.stock.hides",
+      "target": 16
+    }
+  ]
+}

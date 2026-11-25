@@ -16,6 +16,9 @@ dependencies {
     compileOnly 'dev.kizuna.meridian.technique:shared'
     compileOnly 'local.meridian:server'
     compileOnly libs.protobuf.java
+    compileOnly files(kizunaWorkspace.artifact('currency', '', false))
+    compileOnly files(kizunaWorkspace.artifact('inventory-ui', '', false))
+    compileOnly libs.owo
     compileOnly files(kizunaWorkspace.artifact('vanilla-damage', 'fabric', false))
 }
 
@@ -31,6 +34,7 @@ loom {
             name '拳脚不着地客户端连拍'
             runDir providers.gradleProperty('clienttestRunDir').getOrElse('build/clienttest')
             vmArg '-Dfabric.client.gametest'
+            vmArg "-Dmeridian.peddler.scene=${providers.gradleProperty('peddlerScene').getOrElse('airborne')}"
             vmArg '-Dfabric.client.gametest.modid=meridian_peddler_clienttest'
             programArgs '--width', '1280', '--height', '720'
             // 离线玩家名决定原版默认皮肤：Player991 是 classic 宽臂。

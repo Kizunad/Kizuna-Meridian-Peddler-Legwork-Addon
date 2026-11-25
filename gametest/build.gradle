@@ -8,6 +8,9 @@ dependencies {
     implementation libs.fabric.loader
     implementation libs.fabric.api
     implementation project(':verification')
+    implementation files(kizunaWorkspace.artifact('currency', '', false))
+    implementation testFixtures('dev.kizuna.meridian.technique:fabric')
+    implementation files(rootProject.project(':fabric').sourceSets.main.output.classesDirs)
     implementation('dev.kizuna.meridian.technique:fabric') { transitive = false }
     // 功法 Fabric 硬依赖 Framework 的 meridian_framework 模组；上一行只取功法模块本身，所以运行时单独装入。
     runtimeOnly 'dev.kizuna.meridian:fabric'
@@ -28,6 +31,9 @@ loom {
             name '千里腿数据 GameTest'
             runDir 'build/gametest'
             vmArg '-Dfabric-api.gametest'
+            if (providers.gradleProperty('gametestFilter').isPresent()) {
+                vmArg "-Dfabric-api.gametest.filter=${providers.gradleProperty('gametestFilter').get()}"
+            }
             vmArg '-Dfabric-api.gametest.report-file=build/gametest-results.xml'
             vmArg "-DpeddlerLegwork.catalogReport=${layout.buildDirectory.file('catalog-report.txt').get().asFile}"
         }

@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "meridian_peddler_test",
+  "provides": ["meridian_peddler"],
   "version": "1.0.0",
   "name": "千里腿数据验证",
   "environment": "server",
@@ -8,9 +9,11 @@
     "meridian_technique:catalogs": "data/meridian_peddler/technique_catalog.txtpb"
   },
   "entrypoints": {
+    "main": ["dev.kizuna.meridian.peddler.PeddlerVisits"],
     "fabric-gametest": [
       "dev.kizuna.meridian.peddler.test.PeddlerGameTest",
-      "dev.kizuna.meridian.peddler.test.PeddlerScrollDropGameTest"
+      "dev.kizuna.meridian.peddler.test.PeddlerScrollDropGameTest",
+      "dev.kizuna.meridian.peddler.VisitGameTest"
     ],
     "meridian_technique_host": [
       "dev.kizuna.meridian.peddler.test.PeddlerGameTest"

@@ -5,7 +5,8 @@
   "name": "拳脚不着地客户端连拍",
   "environment": "client",
   "entrypoints": {
-    "fabric-client-gametest": ["dev.kizuna.meridian.peddler.clienttest.AirborneStrikeClientTest"]
+    "fabric-client-gametest": ["dev.kizuna.meridian.peddler.clienttest.AirborneStrikeClientTest",
+      "dev.kizuna.meridian.currency.client.PeddlerTradeScene"]
   },
   "depends": {
     "fabric-api": "*", "meridian_peddler": "*", "meridian_villager": "*", "meridian_technique": "*",

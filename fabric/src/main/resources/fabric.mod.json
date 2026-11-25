@@ -13,10 +13,15 @@
   "authors": ["Kizunad"],
   "license": "PolyForm-Noncommercial-1.0.0",
   "environment": "*",
+  "entrypoints": {
+    "main": ["dev.kizuna.meridian.peddler.PeddlerVisits"]
+  },
   "custom": {
     "meridian_technique:catalogs": "data/meridian_peddler/technique_catalog.txtpb"
   },
   "depends": {
+    "fabric-api": "*",
+    "meridian_currency": "*",
     "java": ">=25",
     "minecraft": "26.2",
     "fabricloader": ">=0.20.1",

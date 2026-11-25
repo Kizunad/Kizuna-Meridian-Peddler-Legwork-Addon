@@ -161,14 +161,16 @@ public final class PeddlerCatalogTest {
     }
 
     @Test
-    public void productionJarContainsOnlyDeclaredCatalogAndNoJavaEntrypoint() throws IOException {
-        // 发布 JAR 只应携带数据资源，目录路径与 Fabric 元数据必须一致。
+    public void productionJarContainsDeclaredCatalogAndPeddler() throws IOException {
+        // 发行包应同时带有功法目录、货郎入口和开摊数据。
         try (var jar = new JarFile(System.getProperty("peddlerLegwork.fabricJar"))) {
             String path = PeddlerCatalog.RESOURCE.substring(1);
             String metadata = jarText(jar, "fabric.mod.json");
             assertTrue(metadata.contains("\"meridian_technique:catalogs\": \"" + path + "\""));
-            assertFalse(metadata.contains("\"entrypoints\""));
-            assertFalse(jar.stream().anyMatch(entry -> entry.getName().endsWith(".class")));
+            assertTrue(metadata.contains("dev.kizuna.meridian.peddler.PeddlerVisits"));
+            assertNotNull(jar.getJarEntry("dev/kizuna/meridian/peddler/PeddlerVisits.class"));
+            assertNotNull(jar.getJarEntry("data/meridian_peddler/merchant_offers/pack.json"));
+            assertNotNull(jar.getJarEntry("data/meridian_peddler/loot_table/pack.json"));
             assertNotNull(jar.getJarEntry(path));
         }
     }

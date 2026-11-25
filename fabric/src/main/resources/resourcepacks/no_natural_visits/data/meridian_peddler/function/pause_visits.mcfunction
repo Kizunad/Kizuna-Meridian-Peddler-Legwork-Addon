@@ -1,0 +1,1 @@
+gamerule meridian_peddler:natural_visits false

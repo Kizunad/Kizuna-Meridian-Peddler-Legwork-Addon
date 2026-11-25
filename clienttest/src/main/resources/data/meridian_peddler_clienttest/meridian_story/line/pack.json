@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "origin": "meridian_story:ordinary",
+  "first": "visit",
+  "chapters": {
+    "visit": {
+      "prompt": "merchant.meridian_peddler.greeting",
+      "when": [],
+      "on": [
+        {
+          "type": "talk",
+          "params": {
+            "to": "minecraft:wandering_trader",
+            "label": "merchant.meridian_peddler.name"
+          },
+          "branches": {
+            "accepted": {
+              "finish": "met"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
