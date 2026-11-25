@@ -3,7 +3,13 @@
   "id": "meridian_peddler",
   "version": "${version}",
   "name": "千里腿",
-  "description": "一书三卷九式与蹲马步的腿法目录、伤害类型与标签数据",
+  "contact": {
+    "homepage": "https://github.com/Kizunad/Kizuna-Meridian-Peddler-Legwork-Addon",
+    "sources": "https://github.com/Kizunad/Kizuna-Meridian-Peddler-Legwork-Addon",
+    "issues": "https://github.com/Kizunad/Kizuna-Meridian-Peddler-Legwork-Addon/issues"
+  },
+  "icon": "assets/meridian_peddler/icon.png",
+  "description": "Practice horse stance and learn nine kicking techniques from a traveling peddler’s manual.\n从行脚腿法的三卷中学习九式腿招，蹲马步练习下盘。",
   "authors": ["Kizunad"],
   "license": "PolyForm-Noncommercial-1.0.0",
   "environment": "*",
