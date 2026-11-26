@@ -1,12 +1,9 @@
 package dev.kizuna.meridian.peddler;
 
 import com.mojang.serialization.Codec;
-import dev.kizuna.meridian.currency.CurrencyService;
+import dev.kizuna.meridian.inventory.MobInventories;
 import dev.kizuna.meridian.currency.Stall;
 import dev.kizuna.meridian.currency.TradeCounter;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentRegistry;
 import net.fabricmc.fabric.api.attachment.v1.AttachmentType;
@@ -50,7 +47,6 @@ public final class PeddlerVisits implements ModInitializer {
     private static final int ATTEMPTS = 12;
     private static final int MIN_DISTANCE = 8;
     private static final int MAX_DISTANCE = 20;
-    private static final int FREE_SLOTS = 4;
     static final Identifier PACK = Identifier.parse("meridian_peddler:pack");
     static final GameRule<Boolean> NATURAL_VISITS = GameRuleBuilder.forBoolean(true /* defaultValue */)
             .category(GameRuleCategory.SPAWNING)
@@ -91,7 +87,7 @@ public final class PeddlerVisits implements ModInitializer {
             if (present(trader) && buyer.isWithinEntityInteractionRange(trader, 0)) {
                 var stall = new Stall(trader.getUUID(), PACK, trader, (viewer, actor) -> present(trader));
                 var greeting = Component.translatable("merchant.meridian_peddler.greeting");
-                TradeCounter.open(buyer, stall, List.of(), greeting);
+                TradeCounter.open(buyer, stall, greeting);
             }
             return InteractionResult.SUCCESS_SERVER;
         });
@@ -158,9 +154,13 @@ public final class PeddlerVisits implements ModInitializer {
         }
         var table = level.getServer().reloadableRegistries().getLootTable(LOAD);
         var params = new LootParams.Builder(level).create(LootContextParamSets.EMPTY);
-        var stacks = new ArrayList<>(table.getRandomItems(params, level.getRandom()));
-        stacks.addAll(Collections.nCopies(FREE_SLOTS, ItemStack.EMPTY));
-        CurrencyService.get(level.getServer()).openTill(trader.getUUID(), stacks);
+        var pack = MobInventories.open(trader);
+        for (var goods : table.getRandomItems(params, level.getRandom())) {
+            pack.insert(goods);
+            if (!goods.isEmpty()) {
+                trader.spawnAtLocation(level, goods);
+            }
+        }
         return true;
     }
 }

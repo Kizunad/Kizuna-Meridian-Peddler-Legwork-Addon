@@ -51,10 +51,20 @@ record VisitCustomer(ServerPlayer player, RecordingConnection connection) implem
 
     void settle(TradeWire.Open open, Page page) {
         // 两页的第一行分别是上卷与皮革，确认使用服务端的原报价。
+        var quote = select(open, page);
+        confirm(quote);
+    }
+
+    MerchantService.Quoted select(TradeWire.Open open, Page page) {
+        // 从打开窗口时看到的货单版本取价。
         var trades = CurrencyService.get(player.level().getServer()).merchants();
         var pick = new MerchantService.Selection(open.stock().version(), page, 0, 1, 1);
-        var quote = trades.select(player, open.session(), pick);
-        trades.confirm(player, quote.ticket());
+        return trades.select(player, open.session(), pick);
+    }
+
+    void confirm(MerchantService.Quoted quote) {
+        // 两个顾客各持自己的服务器报价凭据。
+        CurrencyService.get(player.level().getServer()).merchants().confirm(player, quote.ticket());
     }
 
     void carry(ItemStack stack) {

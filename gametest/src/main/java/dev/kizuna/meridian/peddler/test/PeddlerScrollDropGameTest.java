@@ -1,12 +1,14 @@
 package dev.kizuna.meridian.peddler.test;
 
+import dev.kizuna.meridian.technique.fabric.TechniqueFabric;
 import dev.kizuna.meridian.technique.fabric.TechniqueScrollItem;
 import dev.kizuna.meridian.technique.fabric.TechniqueScrollItems;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
+import net.minecraft.world.entity.EntitySpawnReason;
+import net.minecraft.world.phys.Vec3;
 import net.fabricmc.fabric.api.gametest.v1.GameTest;
 import net.minecraft.core.BlockPos;
 import net.minecraft.gametest.framework.GameTestHelper;
@@ -23,7 +25,7 @@ import net.minecraft.world.level.storage.loot.LootTable;
 /**
  * 千里腿的生存来源：玩家亲手杀死会某一卷的流浪商人，才按目录概率掉这一卷。
  *
- * <p>独立装配里没有 Threatening，流浪商人会哪几卷由内存宿主直接教；掉落走原版流浪商人掉落表。</p>
+ * <p>以凡人档商人为起点，通过功法服务学卷，再走原版流浪商人掉落表。</p>
  */
 public final class PeddlerScrollDropGameTest {
     private static final String ROAD = "meridian_peddler:road";
@@ -41,11 +43,13 @@ public final class PeddlerScrollDropGameTest {
         Mob master = spawn(context, new BlockPos(1, 2, 1));
         Mob novice = spawn(context, new BlockPos(3, 2, 1));
         Mob layman = spawn(context, new BlockPos(5, 2, 1));
-        List<UUID> bodies = List.of(master.getUUID(), novice.getUUID(), layman.getUUID());
         try {
-            PeddlerGameTest.teach(master.getUUID(), VOLUMES);
-            PeddlerGameTest.teach(novice.getUUID(), List.of(ROAD));
-            PeddlerGameTest.teach(layman.getUUID(), List.of());
+            var service = TechniqueFabric.service();
+            var masterId = master.getUUID();
+            for (String volume : VOLUMES) {
+                service.learn(masterId, volume);
+            }
+            service.learn(novice.getUUID(), ROAD);
             DamageSource byPlayer = level.damageSources().playerAttack(player);
             Map<String, Integer> masterDrops = roll(level, master, byPlayer, player);
             Map<String, Integer> noviceDrops = roll(level, novice, byPlayer, player);
@@ -60,7 +64,6 @@ public final class PeddlerScrollDropGameTest {
             DamageSource byMob = level.damageSources().mobAttack(layman);
             context.assertTrue(total(roll(level, master, byMob, null)) == 0, "不是玩家打死的商人也掉卷");
         } finally {
-            bodies.forEach(PeddlerGameTest::forget);
             level.getServer().getPlayerList().remove(player);
         }
         context.succeed();
@@ -68,8 +71,12 @@ public final class PeddlerScrollDropGameTest {
 
     private static Mob spawn(GameTestHelper context, BlockPos relative) {
         // 原版流浪商人，关掉 AI 免得它走开或喝隐身药水。
-        Mob trader = context.spawn(EntityTypes.WANDERING_TRADER, relative);
-        trader.setNoAi(true);
+        var level = context.getLevel();
+        Mob trader = EntityTypes.WANDERING_TRADER.create(level, EntitySpawnReason.COMMAND);
+        trader.addTag("meridian_humanoid.tier.mortal");
+        trader.setPos(Vec3.atBottomCenterOf(context.absolutePos(relative)));
+        trader.setNoAi(true /* noAi */);
+        context.assertTrue(level.addFreshEntity(trader), "流浪商人未进入测试世界");
         return trader;
     }
 

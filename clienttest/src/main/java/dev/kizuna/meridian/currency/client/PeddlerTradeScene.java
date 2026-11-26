@@ -214,7 +214,7 @@ public final class PeddlerTradeScene implements FabricClientGameTest {
         var currency = dev.kizuna.meridian.currency.CurrencyService.get(server);
         var purse = currency.player(player).contents();
         var scroll = BuiltInRegistries.ITEM.getOptional(Identifier.parse("meridian_peddler:road_scroll")).orElseThrow();
-        var drawer = currency.openTill(id).contents();
+        var drawer = currency.merchant((WanderingTrader) player.level().getEntity(id)).contents();
         boolean hasScroll = purse.stream().anyMatch(stack -> stack.is(scroll));
         if (!hasScroll || purse.stream().anyMatch(stack -> stack.is(Items.LEATHER))
                 || drawer.stream().noneMatch(stack -> stack.is(Items.LEATHER))) {

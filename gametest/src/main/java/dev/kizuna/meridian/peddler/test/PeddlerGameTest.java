@@ -62,12 +62,12 @@ public final class PeddlerGameTest implements TechniqueHostEntrypoint {
         try {
             rejectVolume(service, entityId, JOURNEY_VOLUME);
             var road = service.learn(entityId, ROAD_VOLUME);
-            context.assertTrue(road.size() == ROAD_KNOWN_COUNT, "上卷没有学会三式和蹲马步");
+            context.assertTrue(peddlerCount(road) == ROAD_KNOWN_COUNT, "上卷没有学会三式和蹲马步");
             rejectVolume(service, entityId, JOURNEY_VOLUME);
             var ambush = service.learn(entityId, AMBUSH_VOLUME);
-            context.assertTrue(ambush.size() == AMBUSH_KNOWN_COUNT, "中卷学习后已知功法数量不符");
+            context.assertTrue(peddlerCount(ambush) == AMBUSH_KNOWN_COUNT, "中卷学习后已知功法数量不符");
             var journey = service.learn(entityId, JOURNEY_VOLUME);
-            context.assertTrue(journey.size() == JOURNEY_KNOWN_COUNT, "下卷学习后已知功法数量不符");
+            context.assertTrue(peddlerCount(journey) == JOURNEY_KNOWN_COUNT, "下卷学习后已知功法数量不符");
             int knownCount = host.progress().getKnownCount();
             context.assertTrue(knownCount == ALL_TECHNIQUE_COUNT,
                     "按卷学习没有保留全部十式");
@@ -80,7 +80,8 @@ public final class PeddlerGameTest implements TechniqueHostEntrypoint {
     @GameTest(maxTicks = PeddlerGameTestTicks.DEFAULT_TIMEOUT)
     public void legBookRulesCoverHeldItemsGroundingAndBoots(GameTestHelper context) throws IOException {
         // 书级事实来自目录，手持物品不改变腿法条件，着地和鞋参数必须显式存在。
-        var book = PeddlerCatalog.registry(PeddlerCatalog.load()).books().get(0);
+        var book = TechniqueFabric.service().registry().books().stream()
+                .filter(entry -> entry.getId().equals("meridian_peddler:legwork")).findFirst().orElseThrow();
         var rules = book.getLegRules();
         context.assertTrue(rules.getIgnoreHeldItems(), "腿法没有忽略手持物品");
         context.assertTrue(rules.hasRequireGrounded() && !rules.getRequireGrounded(), "腿法应写明不要求着地");
@@ -93,9 +94,12 @@ public final class PeddlerGameTest implements TechniqueHostEntrypoint {
     @GameTest(maxTicks = PeddlerGameTestTicks.DEFAULT_TIMEOUT)
     public void everyKickCarriesDamagePartAndBootStrikeRules(GameTestHelper context) throws IOException {
         // 每次打击都携带目录直接声明的伤害 ID、出力腿、目标预算和末击磨鞋标记。
-        var registry = PeddlerCatalog.registry(PeddlerCatalog.load());
+        var registry = TechniqueFabric.service().registry();
         int definitionsWithStrikes = 0;
         for (TechniqueDefinition definition : registry.definitions()) {
+            if (!definition.getId().startsWith("meridian_peddler:")) {
+                continue;
+            }
             for (TechniqueEffect effect : definition.getEffectsList()) {
                 if (!effect.hasLegStrike()) {
                     continue;
@@ -115,7 +119,7 @@ public final class PeddlerGameTest implements TechniqueHostEntrypoint {
     @GameTest(maxTicks = PeddlerGameTestTicks.DEFAULT_TIMEOUT)
     public void whirlwindHasFollowUpsAndExhaustionCurve(GameTestHelper context) throws IOException {
         // 不留行只能由鞭腿或飞踹承接，曲线覆盖起跳、峰值、虚脱和恢复段。
-        var whirlwind = PeddlerCatalog.registry(PeddlerCatalog.load())
+        var whirlwind = TechniqueFabric.service().registry()
                 .findLatest("meridian_peddler:whirlwind").orElseThrow();
         context.assertTrue(whirlwind.getFollowUp().getOnlyFollowUp(), "不留行没有限制为承接式");
         context.assertTrue(whirlwind.getFollowUp().getTransitionsCount() == FOLLOW_UP_COUNT,
@@ -133,7 +137,7 @@ public final class PeddlerGameTest implements TechniqueHostEntrypoint {
     @GameTest(maxTicks = PeddlerGameTestTicks.DEFAULT_TIMEOUT)
     public void horseStanceIsTrainableAndStationary(GameTestHelper context) throws IOException {
         // 蹲马步是上卷内的训练式，训练做功使用腿部组织并把移动倍率降为零。
-        var stance = PeddlerCatalog.registry(PeddlerCatalog.load())
+        var stance = TechniqueFabric.service().registry()
                 .findLatest("meridian_peddler:horse_stance").orElseThrow();
         context.assertTrue(stance.getCost().getQiCount() == 0, "蹲马步不应扣真元");
         context.assertTrue(stance.getCost().getWork(0).getTraining(), "蹲马步没有训练标记");
@@ -164,17 +168,9 @@ public final class PeddlerGameTest implements TechniqueHostEntrypoint {
         return host;
     }
 
-    static void teach(UUID entityId, List<String> volumes) {
-        // 掉落用例借同一内存宿主给一只原版生物一具身体，再按顺序学会这几卷；空表就是有身体、一卷不会。
-        registerHost(entityId);
-        for (String volume : volumes) {
-            TechniqueFabric.service().learn(entityId, volume);
-        }
-    }
-
-    static void forget(UUID entityId) {
-        // 场景结束时收回身体，别的场景读不到这只生物。
-        HOSTS.remove(entityId);
+    private static long peddlerCount(List<TechniqueService.KnownEntry> entries) {
+        // 完整装配中的先天式也在已知列表里，仅计本书的式。
+        return entries.stream().filter(entry -> entry.technique().getId().startsWith("meridian_peddler:")).count();
     }
 
     private static void rejectVolume(TechniqueService service, UUID entityId, String volumeId) {

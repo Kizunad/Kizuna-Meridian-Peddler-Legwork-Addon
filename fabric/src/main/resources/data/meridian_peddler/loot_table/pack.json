@@ -75,51 +75,6 @@
           ]
         }
       ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "meridian_currency:copper_cash",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 64
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "meridian_currency:copper_cash",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 64
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "rolls": 1,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "name": "meridian_currency:silver_fragment",
-          "functions": [
-            {
-              "function": "minecraft:set_count",
-              "count": 6
-            }
-          ]
-        }
-      ]
     }
   ]
 }

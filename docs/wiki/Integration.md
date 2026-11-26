@@ -4,7 +4,7 @@
 
 唯一目录是 [`shared/src/main/resources/data/meridian_peddler/technique_catalog.txtpb`](../../shared/src/main/resources/data/meridian_peddler/technique_catalog.txtpb)。功法库从 `custom.meridian_technique:catalogs` 发现目录并在服务器启动时合并验证。
 
-正式包硬依赖 `meridian_technique`、`meridian_vanilla_damage` 、`meridian_human_host` 和 `meridian_currency`。目录绑定 `human:adult@1`，所有腿击绑定 `human:leg_muscle` 六块组织，足经槽绑定 `human:foot_meridian`。验证模块使用 Human 导出的模板资源，不复制协议源码。
+正式包硬依赖 `meridian_technique`、`meridian_vanilla_damage`、`meridian_human_host`、`meridian_currency` 和 `meridian_mob_inventory`。目录绑定 `human:adult@1`，所有腿击绑定 `human:leg_muscle` 六块组织，足经槽绑定 `human:foot_meridian`。验证模块使用 Human 导出的模板资源，不复制协议源码。
 
 ## 行脚货郎
 
@@ -12,9 +12,9 @@
 
 游戏规则 `meridian_peddler:natural_visits` 控制新到访，生存世界默认开启。可选数据包 `meridian_peddler:no_natural_visits` 在加载时将该规则设为关闭，已到访的货郎按原定时间离开。专服 GameTest 自动加载所有可用数据包，只有货郎到访用例所在的独立测试环境临时开启规则。Fabric 客户端测试的新世界默认关闭 `spawn_mobs`，交易场景自行开启它。
 
-蓝袍货郎孙快腿手持收纳袋，普通主手右键打开交易窗口。三卷、火把、面包的占位售价分别是 120、240、480、3、12 文，皮革收购价 35 文，最多收 16 张。价格、量词和收购上限在[货单](../../fabric/src/main/resources/data/meridian_peddler/merchant_offers/pack.json)，各卷和零钱的初装数量在[装担表](../../fabric/src/main/resources/data/meridian_peddler/loot_table/pack.json)。
+蓝袍货郎孙快腿手持收纳袋，普通主手右键打开交易窗口。三卷、火把、面包的占位售价分别是 120、240、480、3、12 文，皮革收购价 35 文，最多收 16 张。价格、量词和收购上限在[货单](../../fabric/src/main/resources/data/meridian_peddler/merchant_offers/pack.json)，各卷、火把和干粮的初装数量在[装担表](../../fabric/src/main/resources/data/meridian_peddler/loot_table/pack.json)。
 
-新到访只抽一次装担表。演员的 UUID 就是本趟钱匣号，Currency 保存实际的货、钱和回执；同一趟所有玩家共摊。离场时货郎带走余货与收付所得，旧账保留在存档中，下一趟使用新钱匣。
+新到访只抽一次装担表。孙快腿按流浪商人和身体境界取得随身零钱。货款和找零直接从生物背囊收付，余额、零钱或格子不足时拒绝成交。所有玩家共用这一担，死亡时余货和钱币一起掉落。离场时货郎带走余货与收付所得，旧账保留在存档中，下一趟使用新钱匣。
 
 ## 书卷与目录
 

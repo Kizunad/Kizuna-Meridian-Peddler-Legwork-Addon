@@ -1,9 +1,14 @@
 package dev.kizuna.meridian.peddler;
 
+import dev.kizuna.meridian.currency.CurrencyMod;
 import dev.kizuna.meridian.currency.CurrencyService;
 import dev.kizuna.meridian.currency.MerchantOffers.Page;
+import dev.kizuna.meridian.currency.TradeRejected;
+import dev.kizuna.meridian.inventory.MobInventories;
+import dev.kizuna.meridian.inventory.MobInventory;
 import java.util.List;
 import net.fabricmc.fabric.api.gametest.v1.GameTest;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.gametest.framework.GameTestHelper;
 import net.minecraft.resources.Identifier;
@@ -14,6 +19,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.entity.EntityTypes;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.npc.villager.VillagerProfession;
 import net.minecraft.world.entity.npc.wanderingtrader.WanderingTrader;
 import net.minecraft.world.inventory.MerchantMenu;
@@ -27,7 +33,6 @@ import net.minecraft.world.level.storage.TagValueInput;
 import net.minecraft.world.level.storage.TagValueOutput;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.core.BlockPos;
 
 public final class VisitGameTest {
     private static final int ROAD_LOAD = 3;
@@ -35,6 +40,13 @@ public final class VisitGameTest {
     private static final int FRAGMENT_VALUE = 100;
     private static final int BUY_CHANGE = 80;
     private static final int LEATHER_PRICE = 35;
+    private static final int BOOK_PRICE = 120;
+    private static final int MORTAL_MIN = 80;
+    private static final int MORTAL_MAX = 96;
+    private static final int WANDERING_MIN = 280;
+    private static final int WANDERING_MAX = 612;
+    private static final int TRUE_MIN = 1490;
+    private static final int TRUE_MAX = 2928;
     private static final int SEARCH_RADIUS = 40;
     private static final BlockPos ASIDE = new BlockPos(3, 1, 1);
     private static final int RESULT_SLOT = 2;
@@ -112,7 +124,7 @@ public final class VisitGameTest {
             test.assertTrue(count(purse, item(ROAD)) == 1 && count(purse, item(CASH)) == BUY_CHANGE, "甲买卷的实物和找零");
             a.settle(a.open(trader), Page.SELL);
             var after = service.player(a.player()).contents();
-            var drawer = service.openTill(trader.getUUID()).contents();
+            var drawer = MobInventories.inventory(trader).snapshot();
             test.assertTrue(count(after, Items.LEATHER) == 0 && count(drawer, Items.LEATHER) == 1, "皮革交割");
             int remaining = count(after, item(CASH)) + count(after, item(FRAGMENT)) * FRAGMENT_VALUE;
             test.assertTrue(remaining == BUY_CHANGE + LEATHER_PRICE, "卖皮实收");
@@ -193,6 +205,98 @@ public final class VisitGameTest {
         }
         System.out.println("PEDDLER_TEST_OK ordinary_merchants_keep_vanilla_trades");
         test.succeed();
+    }
+
+    @GameTest
+    public void poorMerchantRejectsLeather(GameTestHelper test) {
+        // 从演员背囊取走零钱，再用普通窗口报价；货郎收不起皮革。
+        var trader = visit(test);
+        var pack = MobInventories.inventory(trader);
+        for (int slot = 0; slot < MobInventory.SIZE; slot++) {
+            if (value(List.of(pack.peek(slot))) > 0) {
+                pack.extract(slot, Integer.MAX_VALUE);
+            }
+        }
+        try (var owner = VisitCustomer.login(test.getLevel(), "PoorTill")) {
+            owner.carry(new ItemStack(Items.LEATHER));
+            var view = owner.open(trader);
+            rejected(test, TradeRejected.Reason.FUNDS, () -> owner.select(view, Page.SELL));
+            test.assertTrue(count(pack.snapshot(), Items.LEATHER) == 0, "拒单仍取走皮革");
+            test.assertTrue(owner.player().getInventory().countItem(Items.LEATHER) == 1, "拒单后卖家丢失皮革");
+        }
+        System.out.println("PEDDLER_TEST_OK poor_merchant_rejects_leather");
+        test.succeed();
+    }
+
+    @GameTest
+    public void purchaseAddsToPhysicalDeathDrops(GameTestHelper test) {
+        // 用开担时的实物核范围，按原价买卷，再核对原版死亡入口产生的钱币实体。
+        var trader = visit(test);
+        var level = test.getLevel();
+        var pack = MobInventories.inventory(trader);
+        long opening = value(pack.snapshot());
+        boolean inBand = opening >= MORTAL_MIN && opening <= MORTAL_MAX
+                || opening >= WANDERING_MIN && opening <= WANDERING_MAX
+                || opening >= TRUE_MIN && opening <= TRUE_MAX;
+        test.assertTrue(inBand, "货郎开担的钱不在行商表内：" + opening);
+        try (var buyer = VisitCustomer.login(level, "DeathPurse")) {
+            buyer.carry(new ItemStack(item(FRAGMENT), SILVER));
+            buyer.settle(buyer.open(trader), Page.BUY);
+            test.assertTrue(value(pack.snapshot()) == opening + BOOK_PRICE, "成交款未进货郎背囊");
+            trader.die(trader.damageSources().genericKill());
+            var drops = level.getEntitiesOfClass(ItemEntity.class, trader.getBoundingBox().inflate(1)).stream()
+                    .map(ItemEntity::getItem).toList();
+            test.assertTrue(value(drops) == opening + BOOK_PRICE && value(pack.snapshot()) == 0, "死亡未掉实收货款");
+        }
+        System.out.println("PEDDLER_TEST_OK purchase_adds_to_physical_death_drops");
+        test.succeed();
+    }
+
+    @GameTest
+    public void twoSellersShareLastPayment(GameTestHelper test) {
+        // 两人都看见最后一笔皮革款，先确认的收款，后确认的保留货物。
+        var level = test.getLevel();
+        var trader = visit(test);
+        var pack = MobInventories.inventory(trader);
+        for (int slot = 0; slot < MobInventory.SIZE; slot++) {
+            pack.extract(slot, Integer.MAX_VALUE);
+        }
+        pack.insert(new ItemStack(item(CASH), LEATHER_PRICE));
+        try (var a = VisitCustomer.login(level, "SellerA"); var b = VisitCustomer.login(level, "SellerB")) {
+            a.carry(new ItemStack(Items.LEATHER));
+            b.carry(new ItemStack(Items.LEATHER));
+            var first = a.select(a.open(trader), Page.SELL);
+            var second = b.select(b.open(trader), Page.SELL);
+            a.confirm(first);
+            rejected(test, TradeRejected.Reason.STALE, () -> b.confirm(second));
+            var remaining = pack.snapshot();
+            test.assertTrue(count(remaining, Items.LEATHER) == 1 && value(remaining) == 0,
+                    "最后一笔收购钱未恰好花一次");
+            test.assertTrue(b.player().getInventory().countItem(Items.LEATHER) == 1, "后确认者丢失皮革");
+        }
+        System.out.println("PEDDLER_TEST_OK two_sellers_share_last_payment");
+        test.succeed();
+    }
+
+    private static void rejected(GameTestHelper test, TradeRejected.Reason reason, Runnable action) {
+        // 核对拒单原因，其他异常不能冒充余额不足或报价过期。
+        try {
+            action.run();
+        } catch (TradeRejected rejected) {
+            test.assertTrue(rejected.reason() == reason, "拒绝原因有误：" + rejected.reason());
+            return;
+        }
+        test.fail("本应拒绝收购：" + reason);
+    }
+
+    private static long value(List<ItemStack> stacks) {
+        // 通过发行目录里的比价统计进入背囊或掉到地上的实物。
+        long total = 0;
+        for (var coin : CurrencyMod.catalog().denominations()) {
+            var type = BuiltInRegistries.ITEM.getOptional(coin.item()).orElseThrow();
+            total += coin.value() * count(stacks, type);
+        }
+        return total;
     }
 
     private static WanderingTrader visit(GameTestHelper test) {

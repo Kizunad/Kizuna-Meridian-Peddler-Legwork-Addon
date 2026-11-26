@@ -9,12 +9,15 @@ dependencies {
     implementation libs.fabric.api
     implementation project(':verification')
     implementation files(kizunaWorkspace.artifact('currency', '', false))
+    compileOnly files(kizunaWorkspace.artifact('mob-inventory', 'fabric', false))
     implementation testFixtures('dev.kizuna.meridian.technique:fabric')
     implementation files(rootProject.project(':fabric').sourceSets.main.output.classesDirs)
     implementation('dev.kizuna.meridian.technique:fabric') { transitive = false }
     // 功法 Fabric 硬依赖 Framework 的 meridian_framework 模组；上一行只取功法模块本身，所以运行时单独装入。
     runtimeOnly 'dev.kizuna.meridian:fabric'
 }
+
+apply from: new File(kizunaWorkspace.directory('framework'), 'scripts/full-assembly.gradle')
 
 processResources {
     from(project(':fabric').sourceSets.main.resources) { exclude 'fabric.mod.json' }
